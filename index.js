@@ -27,10 +27,6 @@ const platform = {
     x: 0,
     y: 100,
   },
-  speed: {
-    x: 0,
-    y: 0,
-  },
   size: {
     x: 100,
     y: 10,
@@ -70,6 +66,8 @@ const updateSpeed = (entity, timeDelta) =>
     : entity;
 
 const updatePosition = (entity, otherEntities, timeDelta) => {
+  if (!entity.speed) return entity;
+
   const newPosition = {
     x: entity.position.x + entity.speed.x * timeDelta,
     y: entity.position.y + entity.speed.y * timeDelta,
