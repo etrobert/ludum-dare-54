@@ -1,39 +1,52 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-let state = {
-  position: {
-    x: 10,
-    y: 10,
+let state = [
+  {
+    position: {
+      x: 10,
+      y: 10,
+    },
+    speed: {
+      x: 0, // px per ms
+      y: 10 / 1000, // px per ms
+    },
   },
-  speed: {
-    x: 0, // px per ms
-    y: 10 / 1000, // px per ms
+  {
+    position: {
+      x: 100,
+      y: 100,
+    },
+    speed: {
+      x: 0,
+      y: 0,
+    },
   },
-};
+];
 
 const characterSize = 20;
 
 const render = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'green';
-  ctx.fillRect(
-    state.position.x,
-    state.position.y,
-    characterSize,
-    characterSize
+  state.map((entity) =>
+    ctx.fillRect(
+      entity.position.x,
+      entity.position.y,
+      characterSize,
+      characterSize
+    )
   );
 };
 
-const updateState = (state, timeDelta) => {
-  return {
-    ...state,
+const updateState = (state, timeDelta) =>
+  state.map((entity) => ({
+    ...entity,
     position: {
-      x: state.position.x + state.speed.x * timeDelta,
-      y: state.position.y + state.speed.y * timeDelta,
+      x: entity.position.x + entity.speed.x * timeDelta,
+      y: entity.position.y + entity.speed.y * timeDelta,
     },
-  };
-};
+  }));
 
 let previousTime = Date.now();
 
