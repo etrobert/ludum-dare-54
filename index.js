@@ -1,36 +1,37 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-let state = [
-  {
-    position: {
-      x: 10,
-      y: 10,
-    },
-    speed: {
-      x: 0, // px per ms
-      y: 10 / 1000, // px per ms
-    },
-    size: {
-      x: 20,
-      y: 20,
-    },
+const character = {
+  position: {
+    x: 10,
+    y: 10,
   },
-  {
-    position: {
-      x: 100,
-      y: 100,
-    },
-    speed: {
-      x: 0,
-      y: 0,
-    },
-    size: {
-      x: 100,
-      y: 10,
-    },
+  speed: {
+    x: 0, // px per ms
+    y: 10 / 1000, // px per ms
   },
-];
+  size: {
+    x: 20,
+    y: 20,
+  },
+};
+
+const platform = {
+  position: {
+    x: 100,
+    y: 100,
+  },
+  speed: {
+    x: 0,
+    y: 0,
+  },
+  size: {
+    x: 100,
+    y: 10,
+  },
+};
+
+let state = [character, platform];
 
 const render = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
