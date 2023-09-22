@@ -18,7 +18,7 @@ const character = {
 
 const platform = {
   position: {
-    x: 100,
+    x: 0,
     y: 100,
   },
   speed: {
@@ -46,14 +46,30 @@ const render = () => {
   );
 };
 
+const collision = (entity1, entity2) =>
+  entity1.position.x < entity2.position.x + entity2.size.x &&
+  entity1.position.x + entity1.size.x > entity2.position.x &&
+  entity1.position.y < entity2.position.y + entity2.size.y &&
+  entity1.position.y + entity1.size.y > entity2.position.y;
+
 const updateState = (state, timeDelta) =>
-  state.map((entity) => ({
-    ...entity,
-    position: {
+  state.map((entity, index) => {
+    const newPosition = {
       x: entity.position.x + entity.speed.x * timeDelta,
       y: entity.position.y + entity.speed.y * timeDelta,
-    },
-  }));
+    };
+    const newEntity = {
+      ...entity,
+      position: newPosition,
+    };
+    const otherEntities = state.toSpliced(index, 1);
+
+    const anyCollision = otherEntities.some((otherEntity) =>
+      collision(otherEntity, newEntity)
+    );
+
+    return anyCollision ? entity : newEntity;
+  });
 
 let previousTime = Date.now();
 
