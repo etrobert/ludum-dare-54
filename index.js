@@ -11,6 +11,10 @@ let state = [
       x: 0, // px per ms
       y: 10 / 1000, // px per ms
     },
+    size: {
+      x: 20,
+      y: 20,
+    },
   },
   {
     position: {
@@ -21,10 +25,12 @@ let state = [
       x: 0,
       y: 0,
     },
+    size: {
+      x: 100,
+      y: 10,
+    },
   },
 ];
-
-const characterSize = 20;
 
 const render = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -33,8 +39,8 @@ const render = () => {
     ctx.fillRect(
       entity.position.x,
       entity.position.y,
-      characterSize,
-      characterSize
+      entity.size.x,
+      entity.size.y
     )
   );
 };
