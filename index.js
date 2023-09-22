@@ -1,5 +1,4 @@
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+import render from './render.js';
 
 const gravity = {
   x: 0,
@@ -36,19 +35,6 @@ const platform = {
 };
 
 let state = [character, platform];
-
-const render = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'green';
-  state.map((entity) =>
-    ctx.fillRect(
-      entity.position.x,
-      entity.position.y,
-      entity.size.x,
-      entity.size.y
-    )
-  );
-};
 
 const collision = (entity1, entity2) =>
   entity1.position.x < entity2.position.x + entity2.size.x &&
@@ -103,7 +89,7 @@ const gameLoop = () => {
 
   state = updateState(state, timeDelta);
 
-  render();
+  render(state);
 };
 
 setInterval(gameLoop, 60);
