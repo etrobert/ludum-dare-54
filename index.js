@@ -7,6 +7,7 @@ const gravity = {
 };
 
 const character = {
+  name: 'character',
   position: {
     x: 10,
     y: 10,
@@ -23,6 +24,7 @@ const character = {
 };
 
 const platform = {
+  name: 'platform',
   position: {
     x: 0,
     y: 100,
@@ -65,7 +67,7 @@ const updateSpeed = (entity, timeDelta) =>
       }
     : entity;
 
-const updatePosition = (entity, otherEntities, timeDelta) => {
+const updatePosition = (entity, state, index, timeDelta) => {
   if (!entity.speed) return entity;
 
   const newPosition = {
@@ -77,6 +79,8 @@ const updatePosition = (entity, otherEntities, timeDelta) => {
     position: newPosition,
   };
 
+  const otherEntities = state.toSpliced(index, 1);
+
   const anyCollision = otherEntities.some((otherEntity) =>
     collision(otherEntity, newEntity)
   );
@@ -87,8 +91,7 @@ const updatePosition = (entity, otherEntities, timeDelta) => {
 const updateState = (state, timeDelta) =>
   state.map((entity, index) => {
     entity = updateSpeed(entity, timeDelta);
-    const otherEntities = state.toSpliced(index, 1);
-    return updatePosition(entity, otherEntities, timeDelta);
+    return updatePosition(entity, state, index, timeDelta);
   });
 
 let previousTime = Date.now();
