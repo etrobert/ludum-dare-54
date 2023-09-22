@@ -69,25 +69,28 @@ const updateSpeed = (entity, timeDelta) =>
       }
     : entity;
 
+const updatePosition = (entity, otherEntities, timeDelta) => {
+  const newPosition = {
+    x: entity.position.x + entity.speed.x * timeDelta,
+    y: entity.position.y + entity.speed.y * timeDelta,
+  };
+  const newEntity = {
+    ...entity,
+    position: newPosition,
+  };
+
+  const anyCollision = otherEntities.some((otherEntity) =>
+    collision(otherEntity, newEntity)
+  );
+
+  return anyCollision ? entity : newEntity;
+};
+
 const updateState = (state, timeDelta) =>
   state.map((entity, index) => {
     entity = updateSpeed(entity, timeDelta);
-
-    const newPosition = {
-      x: entity.position.x + entity.speed.x * timeDelta,
-      y: entity.position.y + entity.speed.y * timeDelta,
-    };
-    const newEntity = {
-      ...entity,
-      position: newPosition,
-    };
     const otherEntities = state.toSpliced(index, 1);
-
-    const anyCollision = otherEntities.some((otherEntity) =>
-      collision(otherEntity, newEntity)
-    );
-
-    return anyCollision ? entity : newEntity;
+    return updatePosition(entity, otherEntities, timeDelta);
   });
 
 let previousTime = Date.now();
