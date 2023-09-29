@@ -4,10 +4,16 @@ const collision = (entity1, entity2) =>
   entity1.position.y < entity2.position.y + entity2.size.y &&
   entity1.position.y + entity1.size.y > entity2.position.y;
 
-const addVector = (vector1, vector2) => ({
+const add2Vectors = (vector1, vector2) => ({
   x: vector1.x + vector2.x,
   y: vector1.y + vector2.y,
 });
+
+const addVectors = (...vectors) =>
+  vectors.reduce((sum, currentValue) => add2Vectors(sum, currentValue), {
+    x: 0,
+    y: 0,
+  });
 
 const multiplyVector = (num, vector) => ({
   x: vector.x * num,
@@ -27,7 +33,7 @@ const updateSpeed = (entity, timeDelta) => {
 
   const acceleration = multiplyVector(timeDelta, entity.acceleration);
 
-  const speed = addVector(resistance, addVector(acceleration, entity.speed));
+  const speed = addVectors(resistance, acceleration, entity.speed);
 
   return { ...entity, speed };
 };
