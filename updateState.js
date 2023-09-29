@@ -1,24 +1,10 @@
+import { addVectors, multiplyVector } from './vector.js';
+
 const collision = (entity1, entity2) =>
   entity1.position.x < entity2.position.x + entity2.size.x &&
   entity1.position.x + entity1.size.x > entity2.position.x &&
   entity1.position.y < entity2.position.y + entity2.size.y &&
   entity1.position.y + entity1.size.y > entity2.position.y;
-
-const add2Vectors = (vector1, vector2) => ({
-  x: vector1.x + vector2.x,
-  y: vector1.y + vector2.y,
-});
-
-const addVectors = (...vectors) =>
-  vectors.reduce((sum, currentValue) => add2Vectors(sum, currentValue), {
-    x: 0,
-    y: 0,
-  });
-
-const multiplyVector = (num, vector) => ({
-  x: vector.x * num,
-  y: vector.y * num,
-});
 
 const resistanceConstant = 1;
 
