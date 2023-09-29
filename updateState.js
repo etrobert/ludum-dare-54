@@ -11,14 +11,14 @@ const resistanceConstant = 20 / 1000;
 const updateSpeed = (entity, timeDelta) => {
   if (!entity.speed) return entity;
 
-  const resistance = multiplyVector(timeDelta * resistanceConstant, {
+  const resistanceImpact = multiplyVector(timeDelta * resistanceConstant, {
     x: -entity.speed.x * Math.abs(entity.speed.x),
     y: -entity.speed.y * Math.abs(entity.speed.y),
   });
 
-  const acceleration = multiplyVector(timeDelta, entity.acceleration);
+  const accelerationImpact = multiplyVector(timeDelta, entity.acceleration);
 
-  const speed = addVectors(resistance, acceleration, entity.speed);
+  const speed = addVectors(resistanceImpact, accelerationImpact, entity.speed);
 
   return { ...entity, speed };
 };
