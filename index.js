@@ -38,4 +38,4 @@ document.addEventListener('keydown', (event) => {
   if (event.key === ' ') controls.jump = true;
 });
 
-setInterval(gameLoop, 30);
+setInterval(gameLoop, 10);
