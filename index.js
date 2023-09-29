@@ -19,6 +19,10 @@ const gameLoop = () => {
   previousTime = currentTime;
 
   state[0].acceleration.x = getUserAcceleration(); // TODO: Preserve existing acceleration
+  if (controls.jump) {
+    state[0].speed.y = -60 / 1000;
+    controls.jump = false;
+  }
   state = updateState(state, timeDelta);
 
   render(state);
@@ -28,5 +32,8 @@ let controls = {};
 
 document.addEventListener('keydown', (event) => (controls[event.key] = true));
 document.addEventListener('keyup', (event) => (controls[event.key] = false));
+document.addEventListener('keydown', (event) => {
+  if (event.key === ' ') controls.jump = true;
+});
 
 setInterval(gameLoop, 30);
