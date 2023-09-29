@@ -70,6 +70,61 @@ const updateYPosition = (entity, otherEntities, timeDelta) => {
   }
 };
 
+const xCollidingEntities = (entity, otherEntities, timeDelta) => {
+  const newXPosition = {
+    x: entity.position.x + entity.speed.x * timeDelta,
+    y: entity.position.y,
+  };
+  const newEntity = {
+    ...entity,
+    position: newXPosition,
+  };
+
+  const collidingEntities = otherEntities.filter((otherEntity) =>
+    collision(otherEntity, newEntity)
+  );
+
+  return collidingEntities;
+};
+
+const updateXPosition = (entity, otherEntities, timeDelta) => {
+  const collidingEntities = xCollidingEntities(
+    entity,
+    otherEntities,
+    timeDelta
+  );
+
+  if (collidingEntities.length === 0) return entity;
+
+  if (entity.speed.x > 0) {
+    const closestCollidingEntity = collidingEntities[0]; // TODO: min of position
+    return {
+      ...entity,
+      position: {
+        x: closestCollidingEntity.position.x - entity.size.x,
+        y: entity.position.y,
+      },
+      speed: {
+        x: 0,
+        y: entity.speed.y,
+      },
+    };
+  } else {
+    const closestCollidingEntity = collidingEntities[0]; // TODO
+    return {
+      ...entity,
+      position: {
+        x: closestCollidingEntity.position.x + closestCollidingEntity.size.x,
+        y: entity.position.y,
+      },
+      speed: {
+        x: 0,
+        y: entity.speed.y,
+      },
+    };
+  }
+};
+
 const updatePosition = (entity, state, index, timeDelta) => {
   if (!entity.speed) return entity;
 
@@ -88,7 +143,7 @@ const updatePosition = (entity, state, index, timeDelta) => {
     collision(otherEntity, newEntity)
   );
 
-  entity = updateYPosition(entity, otherEntities, timeDelta);
+  entity = updateXPosition(entity, otherEntities, timeDelta);
 
   return anyCollision ? entity : newEntity;
 };
