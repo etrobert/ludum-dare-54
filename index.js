@@ -22,7 +22,7 @@ const gameLoop = () => {
 
   state[0].acceleration.x = getUserAcceleration(); // TODO: Preserve existing acceleration
   if (controls.jump) {
-    state[0].speed.y = -60 / 1000;
+    state[0].speed.y = -80 / 1000;
     controls.jump = false;
   }
   state = updateState(state, timeDelta);
