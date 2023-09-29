@@ -32,6 +32,33 @@ const yCollidingEntities = (entity, otherEntities, timeDelta) => {
   return collidingEntities;
 };
 
+const updateYPosition = (entity, otherEntities, timeDelta) => {
+  const collidingEntities = yCollidingEntities(
+    entity,
+    otherEntities,
+    timeDelta
+  );
+
+  if (collidingEntities.length === 0) return entity;
+
+  if (entity.speed.y > 0) {
+    const closestCollidingEntity = collidingEntities[0]; // TODO: min of position
+    return {
+      ...entity,
+      position: {
+        x: entity.position.x,
+        y: closestCollidingEntity.position.y - entity.size.x,
+      },
+      speed: {
+        x: entity.speed.x,
+        y: 0,
+      },
+    };
+  } else {
+    return entity; // TODO
+  }
+};
+
 const updatePosition = (entity, state, index, timeDelta) => {
   if (!entity.speed) return entity;
 
@@ -46,11 +73,11 @@ const updatePosition = (entity, state, index, timeDelta) => {
 
   const otherEntities = state.toSpliced(index, 1);
 
-  console.log(yCollidingEntities(entity, otherEntities, timeDelta));
-
   const anyCollision = otherEntities.some((otherEntity) =>
     collision(otherEntity, newEntity)
   );
+
+  entity = updateYPosition(entity, otherEntities, timeDelta);
 
   return anyCollision ? entity : newEntity;
 };
