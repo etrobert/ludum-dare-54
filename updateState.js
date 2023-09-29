@@ -15,6 +15,23 @@ const updateSpeed = (entity, timeDelta) =>
       }
     : entity;
 
+const yCollidingEntities = (entity, otherEntities, timeDelta) => {
+  const newYPosition = {
+    x: entity.position.x,
+    y: entity.position.y + entity.speed.y * timeDelta,
+  };
+  const newEntity = {
+    ...entity,
+    position: newYPosition,
+  };
+
+  const collidingEntities = otherEntities.filter((otherEntity) =>
+    collision(otherEntity, newEntity)
+  );
+
+  return collidingEntities;
+};
+
 const updatePosition = (entity, state, index, timeDelta) => {
   if (!entity.speed) return entity;
 
@@ -28,6 +45,8 @@ const updatePosition = (entity, state, index, timeDelta) => {
   };
 
   const otherEntities = state.toSpliced(index, 1);
+
+  console.log(yCollidingEntities(entity, otherEntities, timeDelta));
 
   const anyCollision = otherEntities.some((otherEntity) =>
     collision(otherEntity, newEntity)
