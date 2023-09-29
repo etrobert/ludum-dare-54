@@ -8,7 +8,7 @@ const gravity = {
 
 const character = {
   name: 'character',
-  position: { x: 30, y: 10 },
+  position: { x: 30, y: 30 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: gravity,
   size: { x: 20, y: 20 },
@@ -32,7 +32,13 @@ const platform3 = {
   size: { x: 10, y: 100 },
 };
 
-let state = [character, platform1, platform2, platform3];
+const platform4 = {
+  name: 'platform4',
+  position: { x: 10, y: 10 },
+  size: { x: 100, y: 10 },
+};
+
+let state = [character, platform1, platform2, platform3, platform4];
 
 let previousTime = Date.now();
 
