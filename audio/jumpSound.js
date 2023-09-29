@@ -10,4 +10,4 @@ const playJumpSound = () => {
   jumpSound.play();
 };
 
-export { playJumpSound };
+export default playJumpSound;
