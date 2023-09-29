@@ -39,7 +39,14 @@ const updateYPosition = (entity, otherEntities, timeDelta) => {
     timeDelta
   );
 
-  if (collidingEntities.length === 0) return entity;
+  if (collidingEntities.length === 0)
+    return {
+      ...entity,
+      position: {
+        x: entity.position.x,
+        y: entity.position.y + entity.speed.y * timeDelta,
+      },
+    };
 
   if (entity.speed.y > 0) {
     const closestCollidingEntity = collidingEntities[0]; // TODO: min of position
@@ -94,7 +101,14 @@ const updateXPosition = (entity, otherEntities, timeDelta) => {
     timeDelta
   );
 
-  if (collidingEntities.length === 0) return entity;
+  if (collidingEntities.length === 0)
+    return {
+      ...entity,
+      position: {
+        x: entity.position.x + entity.speed.x * timeDelta,
+        y: entity.position.y,
+      },
+    };
 
   if (entity.speed.x > 0) {
     const closestCollidingEntity = collidingEntities[0]; // TODO: min of position
@@ -128,24 +142,22 @@ const updateXPosition = (entity, otherEntities, timeDelta) => {
 const updatePosition = (entity, state, index, timeDelta) => {
   if (!entity.speed) return entity;
 
-  const newPosition = {
-    x: entity.position.x + entity.speed.x * timeDelta,
-    y: entity.position.y + entity.speed.y * timeDelta,
-  };
-  const newEntity = {
-    ...entity,
-    position: newPosition,
-  };
-
   const otherEntities = state.toSpliced(index, 1);
 
-  const anyCollision = otherEntities.some((otherEntity) =>
-    collision(otherEntity, newEntity)
-  );
+  const xUpdatedEntity = updateXPosition(entity, otherEntities, timeDelta);
+  const yUpdatedEntity = updateYPosition(entity, otherEntities, timeDelta);
 
-  entity = updateXPosition(entity, otherEntities, timeDelta);
-
-  return anyCollision ? entity : newEntity;
+  return {
+    ...entity,
+    position: {
+      x: xUpdatedEntity.position.x,
+      y: yUpdatedEntity.position.y,
+    },
+    speed: {
+      x: xUpdatedEntity.speed.x,
+      y: yUpdatedEntity.speed.y,
+    },
+  };
 };
 
 const updateState = (state, timeDelta) =>
