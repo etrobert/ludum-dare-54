@@ -5,13 +5,20 @@ body {
 
 body {
   display: grid;
-  place-content: center;
+  place-items: center;
 }
 
 body,
-menu {
+menu,
+button {
   margin: 0;
   padding: 0;
+}
+
+button {
+  font-size: 1.5em;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
 canvas {
@@ -20,4 +27,8 @@ canvas {
 
 li {
   list-style: none;
+}
+
+menu {
+  position: absolute;
 }
