@@ -38,4 +38,28 @@ document.addEventListener('keydown', (event) => {
   if (event.key === ' ') controls.jump = true;
 });
 
-setInterval(gameLoop, 10);
+let gameLoopInterval;
+
+const startGameLoop = () => {
+  if (!gameLoopInterval) {
+    gameLoopInterval = setInterval(gameLoop, 10);
+    previousTime = Date.now();
+  }
+};
+
+startGameLoop();
+
+const menu = document.querySelector('menu');
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    clearInterval(gameLoopInterval);
+    gameLoopInterval = undefined;
+    menu.style.display = 'block';
+  }
+});
+
+menu.addEventListener('click', () => {
+  startGameLoop();
+  menu.style.display = 'none';
+});
