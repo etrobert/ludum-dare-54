@@ -55,7 +55,18 @@ const updateYPosition = (entity, otherEntities, timeDelta) => {
       },
     };
   } else {
-    return entity; // TODO
+    const closestCollidingEntity = collidingEntities[0]; // TODO
+    return {
+      ...entity,
+      position: {
+        x: entity.position.x,
+        y: closestCollidingEntity.position.y + closestCollidingEntity.size.y,
+      },
+      speed: {
+        x: entity.speed.x,
+        y: 0,
+      },
+    };
   }
 };
 
