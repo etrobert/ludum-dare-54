@@ -6,16 +6,15 @@ const collision = (entity1, entity2) =>
   entity1.position.y < entity2.position.y + entity2.size.y &&
   entity1.position.y + entity1.size.y > entity2.position.y;
 
-const resistanceConstant = 1;
+const resistanceConstant = 20 / 1000;
 
 const updateSpeed = (entity, timeDelta) => {
   if (!entity.speed) return entity;
 
-  // TODO: Should we factor in timeDelta?
-  const resistance = {
-    x: -entity.speed.x * Math.abs(entity.speed.x) * resistanceConstant,
-    y: -entity.speed.y * Math.abs(entity.speed.y) * resistanceConstant,
-  };
+  const resistance = multiplyVector(timeDelta * resistanceConstant, {
+    x: -entity.speed.x * Math.abs(entity.speed.x),
+    y: -entity.speed.y * Math.abs(entity.speed.y),
+  });
 
   const acceleration = multiplyVector(timeDelta, entity.acceleration);
 
