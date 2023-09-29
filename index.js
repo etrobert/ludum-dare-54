@@ -40,4 +40,4 @@ const gameLoop = () => {
   render(state);
 };
 
-setInterval(gameLoop, 60);
+setInterval(gameLoop, 30);
