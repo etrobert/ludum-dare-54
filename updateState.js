@@ -4,16 +4,33 @@ const collision = (entity1, entity2) =>
   entity1.position.y < entity2.position.y + entity2.size.y &&
   entity1.position.y + entity1.size.y > entity2.position.y;
 
-const updateSpeed = (entity, timeDelta) =>
-  entity.acceleration
-    ? {
-        ...entity,
-        speed: {
-          x: entity.speed.x + entity.acceleration.x * timeDelta,
-          y: entity.speed.y + entity.acceleration.y * timeDelta,
-        },
-      }
-    : entity;
+const addVector = (vector1, vector2) => ({
+  x: vector1.x + vector2.x,
+  y: vector1.y + vector2.y,
+});
+
+const multiplyVector = (num, vector) => ({
+  x: vector.x * num,
+  y: vector.y * num,
+});
+
+const resistanceConstant = 1;
+
+const updateSpeed = (entity, timeDelta) => {
+  if (!entity.speed) return entity;
+
+  // TODO: Should we factor in timeDelta?
+  const resistance = {
+    x: -entity.speed.x * Math.abs(entity.speed.x) * resistanceConstant,
+    y: -entity.speed.y * Math.abs(entity.speed.y) * resistanceConstant,
+  };
+
+  const acceleration = multiplyVector(timeDelta, entity.acceleration);
+
+  const speed = addVector(resistance, addVector(acceleration, entity.speed));
+
+  return { ...entity, speed };
+};
 
 const yCollidingEntities = (entity, otherEntities, timeDelta) => {
   const newYPosition = {
