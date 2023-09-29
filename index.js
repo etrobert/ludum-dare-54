@@ -1,5 +1,6 @@
 import render from './render.js';
 import updateState from './updateState.js';
+import { playMusic, pauseMusic } from './audio.js';
 
 import squareLevel from './squareLevel.js';
 import flatLevel from './flatLevel.js';
@@ -47,8 +48,6 @@ const startGameLoop = () => {
   }
 };
 
-startGameLoop();
-
 const menu = document.querySelector('menu');
 
 document.addEventListener('keydown', (event) => {
@@ -56,10 +55,12 @@ document.addEventListener('keydown', (event) => {
     clearInterval(gameLoopInterval);
     gameLoopInterval = undefined;
     menu.style.display = 'block';
+    pauseMusic();
   }
 });
 
 menu.addEventListener('click', () => {
   startGameLoop();
   menu.style.display = 'none';
+  playMusic();
 });

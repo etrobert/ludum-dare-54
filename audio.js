@@ -1,15 +1,20 @@
 const audioCtx = new AudioContext();
-const audioElement = document.querySelector('audio');
-const track = audioCtx.createMediaElementSource(audioElement);
+const backgroundMusic = document.querySelector('#background-music');
+const track = audioCtx.createMediaElementSource(backgroundMusic);
+track.connect(audioCtx.destination);
 
-const playSound = () => {
+const playMusic = () => {
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
-  track.connect(audioCtx.destination);
-  audioElement.play();
-  // setTimeout(() => audioElement.pause(), 1000);
+  backgroundMusic.play();
 };
 
-const button2 = document.getElementById('button1');
-button2.addEventListener('click', playSound);
+const pauseMusic = () => {
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  backgroundMusic.pause();
+};
+
+export { playMusic, pauseMusic };
