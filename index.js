@@ -30,7 +30,7 @@ const gameLoop = () => {
   }
   state = updateState(state, timeDelta);
 
-  render(state);
+  render(state, currentTime);
 };
 
 let controls = {};

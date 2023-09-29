@@ -7,14 +7,17 @@ const scale = 2.5;
 const jellyfishImage = new Image();
 jellyfishImage.src = 'jellyfish.png';
 
-const render = (state) => {
+const animationFrames = 16;
+const timePerFrame = 100; // ms
+
+const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'green';
   state.map((entity, index) => {
     if (index === 0)
       ctx.drawImage(
         jellyfishImage,
-        0,
+        16 * (Math.floor(time / timePerFrame) % animationFrames),
         0,
         16,
         16,
