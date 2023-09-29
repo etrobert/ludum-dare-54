@@ -8,43 +8,22 @@ const gravity = {
 
 const character = {
   name: 'character',
-  position: {
-    x: 10,
-    y: 10,
-  },
-  speed: {
-    x: 0, // px per ms
-    y: 0, // px per ms
-  },
+  position: { x: 10, y: 10 },
+  speed: { x: 0, y: 0 }, // px per ms
   acceleration: gravity,
-  size: {
-    x: 20,
-    y: 20,
-  },
+  size: { x: 20, y: 20 },
 };
 
 const platform1 = {
   name: 'platform1',
-  position: {
-    x: 0,
-    y: 100,
-  },
-  size: {
-    x: 100,
-    y: 10,
-  },
+  position: { x: 0, y: 100 },
+  size: { x: 100, y: 10 },
 };
 
 const platform2 = {
   name: 'platform2',
-  position: {
-    x: 100,
-    y: 10,
-  },
-  size: {
-    x: 10,
-    y: 100,
-  },
+  position: { x: 100, y: 10 },
+  size: { x: 10, y: 100 },
 };
 
 let state = [character, platform1, platform2];
