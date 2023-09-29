@@ -1,8 +1,10 @@
 import render from './render.js';
 import updateState from './updateState.js';
-import squareLevel from './squareLevel.js';
 
-let state = squareLevel;
+import squareLevel from './squareLevel.js';
+import flatLevel from './flatLevel.js';
+
+let state = flatLevel;
 
 let previousTime = Date.now();
 
