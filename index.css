@@ -8,10 +8,16 @@ body {
   place-content: center;
 }
 
-body {
+body,
+menu {
   margin: 0;
+  padding: 0;
 }
 
 canvas {
   background: lightblue;
+}
+
+li {
+  list-style: none;
 }
