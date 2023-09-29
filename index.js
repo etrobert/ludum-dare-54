@@ -3,7 +3,7 @@ import updateState from './updateState.js';
 
 const gravity = {
   x: 0,
-  y: 1 / 1000 / 100,
+  y: 1 / 1000 / 20,
 };
 
 const character = {
