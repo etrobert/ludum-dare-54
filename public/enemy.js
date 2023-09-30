@@ -4,8 +4,10 @@ enemyFrames.src = 'assets/images/animations/jellyfish-jump.png';
 const enemy = {
   name: 'enemy',
   position: { x: 32, y: 32 },
-  speed: { x: 0, y: 0 }, // px per ms
-  acceleration: { x: 0, y: 0 },
+  speed: { x: 100 / 1000, y: 0 }, // px per ms
+  accelerationconstant: 1 / 10000,
+  acceleration: { x: 0.0, y: 0 },
+  //   acceleration: { x: 0.001, y: 0 },
   size: { x: 32, y: 32 },
   display: {
     image: enemyFrames,

@@ -1,4 +1,4 @@
-import { addVectors, multiplyVector } from './vector.js';
+import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 
 const collision = (entity1, entity2) =>
   entity1.position.x < entity2.position.x + entity2.size.x &&
@@ -161,9 +161,32 @@ const updatePosition = (entity, state, timeDelta) => {
   };
 };
 
+const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
+  const vectortoCharacter = addVectors(
+    characterPos,
+    multiplyVector(-1, enemy.position)
+  );
+  const normVectortoCharacter = normalizeVector(vectortoCharacter);
+  enemy.accelerationconstant * timeDelta;
+  return {
+    ...enemy,
+    acceleration: multiplyVector(
+      enemy.accelerationconstant * timeDelta,
+      normVectortoCharacter
+    ),
+  };
+};
+
 const updateState = (state, timeDelta) => {
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state, timeDelta);
+
+  state.enemies = state.enemies.map((enemy) => {
+    enemy = updateEnemyAcceleration(enemy, state.character.position, timeDelta);
+    enemy = updateSpeed(enemy, timeDelta);
+    return updatePosition(enemy, state, timeDelta);
+  });
+
   return state;
 };
 export default updateState;
