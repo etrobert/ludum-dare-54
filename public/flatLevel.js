@@ -19,12 +19,12 @@ const characterAnimation = {
 };
 
 const characterWalkImage = new Image();
-characterWalkImage.src = 'assets/images/animations/character-walk.png';
+characterWalkImage.src = 'assets/images/animations/character-walk-right.png';
 
 const characterWalkAnimation = {
   image: characterWalkImage,
-  sw: 50,
-  sh: 50,
+  sw: 64,
+  sh: 64,
   animationFrames: 4,
 };
 
@@ -37,7 +37,7 @@ const character = {
   position: { x: 32, y: 32 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
-  size: { x: 50, y: 50 },
+  size: { x: 64, y: 64 },
   display: characterWalkAnimation,
 };
 
