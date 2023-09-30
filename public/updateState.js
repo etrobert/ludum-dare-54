@@ -201,9 +201,17 @@ const hitCharacter = (state, currentTime) => {
 };
 
 const radiusCollision = (entity1, entity2) => {
-  const distanceVector = addVectors(
+  const entity1Center = addVectors(
     entity1.position,
-    multiplyVector(-1, entity2.position)
+    multiplyVector(0.5, entity1.size)
+  );
+  const entity2Center = addVectors(
+    entity2.position,
+    multiplyVector(0.5, entity2.size)
+  );
+  const distanceVector = addVectors(
+    entity1Center,
+    multiplyVector(-1, entity2Center)
   );
   const d2 =
     distanceVector.x * distanceVector.x + distanceVector.y * distanceVector.y;
