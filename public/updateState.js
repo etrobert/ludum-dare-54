@@ -177,6 +177,13 @@ const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
   };
 };
 
+const shroudShrinkSpeed = 50 / 1000;
+
+const updateShroud = (state, timeDelta) => ({
+  ...state,
+  shroudRadius: Math.max(state.shroudRadius - shroudShrinkSpeed * timeDelta, 0),
+});
+
 const updateState = (state, timeDelta) => {
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state, timeDelta);
@@ -186,6 +193,8 @@ const updateState = (state, timeDelta) => {
     enemy = updateSpeed(enemy, timeDelta);
     return updatePosition(enemy, state, timeDelta);
   });
+
+  state = updateShroud(state, timeDelta);
 
   return state;
 };

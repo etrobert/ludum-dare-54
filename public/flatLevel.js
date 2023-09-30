@@ -32,6 +32,7 @@ const obstacle2 = {
 const flatLevel = {
   character,
   enemies: [],
+  shroudRadius: 512,
   obstacles: [obstacle1, obstacle2],
 };
 

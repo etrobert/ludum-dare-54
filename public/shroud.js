@@ -2,7 +2,7 @@ import { canvas, ctx } from './graphics.js';
 import { getScreenPos } from './screen-pos.js';
 
 const startShroud = (state) => {
-  const radius = 256;
+  const radius = state.shroudRadius;
   const { x: cx, y: cy } = getScreenPos(
     { position: { x: 16, y: 16 }, size: { x: 2 * radius, y: 2 * radius } },
     state.character
