@@ -67,17 +67,23 @@ const startGameLoop = () => {
 
 const menu = document.querySelector('menu');
 
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    clearInterval(gameLoopInterval);
-    gameLoopInterval = undefined;
-    menu.style.display = 'block';
-    pauseMusic();
-  }
-});
+const pause = () => {
+  clearInterval(gameLoopInterval);
+  gameLoopInterval = undefined;
+  menu.style.display = 'block';
+  pauseMusic();
+};
 
-menu.addEventListener('click', () => {
+const play = () => {
   startGameLoop();
   menu.style.display = 'none';
   playMusic();
+};
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') pause();
 });
+
+menu.addEventListener('click', play);
+
+play(); // TODO: Remove autoplay
