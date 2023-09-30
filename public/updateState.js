@@ -254,7 +254,7 @@ const updateState = (state, timeDelta, currentTime) => {
     return updatePosition(enemy, state, timeDelta);
   });
 
-  // state = updateShroud(state, timeDelta);
+  state = updateShroud(state, timeDelta);
   return currentTime - state.character.lastInvulnerability < invulnerabilityTime
     ? state
     : applyEnemyDamage(state, currentTime);
