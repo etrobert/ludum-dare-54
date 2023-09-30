@@ -1,4 +1,5 @@
 import { plotHealth, plotMaxHealth } from './plotHealth.js';
+import { dash, dashCooldown } from './dash.js';
 import render from './render.js';
 import updateState from './updateState.js';
 import { spawnEnemy } from './enemy.js';
@@ -43,7 +44,14 @@ const gameLoop = () => {
   const timeDelta = currentTime - previousTime;
   previousTime = currentTime;
 
-  state.character.acceleration = getUserAcceleration(); // TODO: Preserve existing acceleration
+  if (controls.requestDash) {
+    controls.requestDash = false;
+    state = dash(state, currentTime);
+  }
+
+  if (!state.character.dashing)
+    state.character.acceleration = getUserAcceleration(); // TODO: Preserve existing acceleration
+
   state = updateState(state, timeDelta, currentTime);
 
   render(state, currentTime);
@@ -54,7 +62,9 @@ let controls = {};
 document.addEventListener('keydown', (event) => (controls[event.key] = true));
 document.addEventListener('keyup', (event) => (controls[event.key] = false));
 document.addEventListener('keydown', (event) => {
-  if (event.key === ' ') console.log('space was pressed');
+  if (event.key === ' ') {
+    controls.requestDash = true;
+  }
 });
 
 let gameLoopInterval;

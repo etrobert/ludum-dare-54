@@ -5,6 +5,7 @@ import {
 import { plotHealth } from './plotHealth.js';
 import { entityCenter, distanceVector, squaredDistance } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
+import { dashDuration } from './dash.js';
 
 const collision = (entity1, entity2) =>
   entity1.position.x < entity2.position.x + entity2.size.x &&
@@ -218,9 +219,27 @@ const applyEnemyDamage = (state, currentTime) => {
   return hits ? hitCharacter(state, currentTime) : state;
 };
 
+const resetDash = (state, currentTime) => {
+  if (
+    currentTime - state.character.lastDash > dashDuration &&
+    state.character.dashing
+  ) {
+    return {
+      ...state,
+      character: {
+        ...state.character,
+        dashing: false,
+        acceleration: { x: 0, y: 0 },
+      },
+    };
+  }
+  return state;
+};
+
 const invulnerabilityTime = 1 * 1000;
 
 const updateState = (state, timeDelta, currentTime) => {
+  state = resetDash(state, currentTime);
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state, timeDelta);
 
@@ -235,7 +254,7 @@ const updateState = (state, timeDelta, currentTime) => {
     return updatePosition(enemy, state, timeDelta);
   });
 
-  state = updateShroud(state, timeDelta);
+  // state = updateShroud(state, timeDelta);
   return currentTime - state.character.lastInvulnerability < invulnerabilityTime
     ? state
     : applyEnemyDamage(state, currentTime);

@@ -6,6 +6,8 @@ const character = {
   maxHealth: 3,
   lastInvulnerability: 0,
   hitBoxRadius: 10,
+  dashing: false,
+  lastDash: 0,
   position: { x: 100, y: 100 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
