@@ -18,8 +18,12 @@ const createEnemyOutScreen = (state) => {
   return createEnemy(position);
 };
 
-const spawnEnemy = (state) => {
-  return { ...state, enemies: [...state.enemies, createEnemyOutScreen(state)] };
+const spawnEnemy = (state, currentTime) => {
+  return {
+    ...state,
+    enemies: [...state.enemies, createEnemyOutScreen(state)],
+    lastSpawn: currentTime,
+  };
 };
 
 export { spawnEnemy };

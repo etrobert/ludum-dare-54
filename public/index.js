@@ -10,7 +10,6 @@ import { multiplyVector } from './vector.js';
 let state = flatLevel;
 plotHealth(state.character.health);
 plotMaxHealth(state.character.maxHealth);
-state = spawnEnemy(state);
 
 let previousTime = Date.now();
 
