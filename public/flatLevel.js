@@ -21,6 +21,7 @@ const flatLevel = {
   shroudRadius: 512,
   obstacles: [],
   lastSpawn: 0,
+  score: 0,
 };
 
 export default flatLevel;
