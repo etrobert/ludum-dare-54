@@ -7,7 +7,7 @@ const playJumpSound = () => {
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
-  jumpSound.play();
+  jumpSound.cloneNode(true).play();
 };
 
 export default playJumpSound;
