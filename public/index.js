@@ -1,3 +1,4 @@
+import { plotHealth, plotMaxHealth } from './plotHealth.js';
 import render from './render.js';
 import updateState from './updateState.js';
 import { spawnEnemy } from './enemy.js';
@@ -6,6 +7,8 @@ import flatLevel from './flatLevel.js';
 import { multiplyVector } from './vector.js';
 
 let state = flatLevel;
+plotHealth(state.character.health);
+plotMaxHealth(state.character.maxHealth);
 state = spawnEnemy(state);
 
 let previousTime = Date.now();

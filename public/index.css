@@ -32,3 +32,22 @@ li {
 menu {
   position: absolute;
 }
+
+.health-bar {
+  transform-origin: top left;
+  position: absolute;
+  transform: scale(2);
+  background-repeat: repeat;
+  width: calc(16px * var(--hearts));
+  height: 16px;
+}
+
+#filled-health-bar {
+  --hearts: 2;
+  background-image: url(assets/images/interface/heart-full.png);
+}
+
+#empty-health-bar {
+  --hearts: 3;
+  background-image: url(assets/images/interface/heart-empty.png);
+}

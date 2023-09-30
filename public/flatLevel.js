@@ -3,6 +3,8 @@ jellyfishImage.src = 'assets/images/animations/jellyfish.png';
 
 const character = {
   name: 'character',
+  health: 2,
+  maxHealth: 3,
   position: { x: 32, y: 32 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
