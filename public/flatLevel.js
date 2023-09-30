@@ -3,10 +3,10 @@ jellyfishImage.src = 'assets/images/animations/jellyfish.png';
 
 const character = {
   name: 'character',
-  position: { x: 30, y: 30 },
+  position: { x: 32, y: 32 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
-  size: { x: 20, y: 20 },
+  size: { x: 32, y: 32 },
   display: {
     image: jellyfishImage,
     sw: 16,
@@ -17,14 +17,14 @@ const character = {
 
 const platform1 = {
   name: 'platform1',
-  position: { x: 10, y: 100 },
-  size: { x: 280, y: 10 },
+  position: { x: 16, y: 128 },
+  size: { x: 280, y: 16 },
 };
 
 const platform2 = {
   name: 'platform2',
-  position: { x: 200, y: 90 },
-  size: { x: 10, y: 10 },
+  position: { x: 128, y: 64 },
+  size: { x: 16, y: 16 },
 };
 
 const flatLevel = [character, platform1, platform2];

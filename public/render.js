@@ -4,7 +4,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
-const scale = 2.5;
+const scale = 2;
 
 const backgroundImage = new Image();
 backgroundImage.src = 'assets/images/backgrounds/sea-world.png';
