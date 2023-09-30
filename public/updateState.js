@@ -43,12 +43,8 @@ const yCollidingEntities = (entity, otherEntities, timeDelta) => {
   return collidingEntities;
 };
 
-const updateYPosition = (entity, otherEntities, timeDelta) => {
-  const collidingEntities = yCollidingEntities(
-    entity,
-    otherEntities,
-    timeDelta
-  );
+const updateYPosition = (entity, obstacles, timeDelta) => {
+  const collidingEntities = yCollidingEntities(entity, obstacles, timeDelta);
 
   if (collidingEntities.length === 0)
     return {
@@ -105,12 +101,8 @@ const xCollidingEntities = (entity, otherEntities, timeDelta) => {
   return collidingEntities;
 };
 
-const updateXPosition = (entity, otherEntities, timeDelta) => {
-  const collidingEntities = xCollidingEntities(
-    entity,
-    otherEntities,
-    timeDelta
-  );
+const updateXPosition = (entity, obstacles, timeDelta) => {
+  const collidingEntities = xCollidingEntities(entity, obstacles, timeDelta);
 
   if (collidingEntities.length === 0)
     return {
@@ -150,13 +142,11 @@ const updateXPosition = (entity, otherEntities, timeDelta) => {
   }
 };
 
-const updatePosition = (entity, state, index, timeDelta) => {
+const updatePosition = (entity, state, timeDelta) => {
   if (!entity.speed) return entity;
 
-  const otherEntities = state.toSpliced(index, 1);
-
-  const xUpdatedEntity = updateXPosition(entity, otherEntities, timeDelta);
-  const yUpdatedEntity = updateYPosition(entity, otherEntities, timeDelta);
+  const xUpdatedEntity = updateXPosition(entity, state.obstacles, timeDelta);
+  const yUpdatedEntity = updateYPosition(entity, state.obstacles, timeDelta);
 
   return {
     ...entity,
@@ -171,10 +161,9 @@ const updatePosition = (entity, state, index, timeDelta) => {
   };
 };
 
-const updateState = (state, timeDelta) =>
-  state.map((entity, index) => {
-    entity = updateSpeed(entity, timeDelta);
-    return updatePosition(entity, state, index, timeDelta);
-  });
-
+const updateState = (state, timeDelta) => {
+  state.character = updateSpeed(state.character, timeDelta);
+  state.character = updatePosition(state.character, state, timeDelta);
+  return state;
+};
 export default updateState;

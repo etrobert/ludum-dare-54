@@ -41,30 +41,33 @@ const getScreenPos = (entity, character) => {
   );
 };
 
+const renderEntity = (entity, state, time) => {
+  const screenPos = getScreenPos(entity, state.character);
+  if (entity.display) {
+    drawDisplayableEntity(entity, time, screenPos);
+  } else
+    ctx.fillRect(
+      screenPos.x,
+      screenPos.y,
+      entity.size.x * scale,
+      entity.size.y * scale
+    );
+};
+
 const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(
     backgroundImage,
-    100 - state[0].position.x * scale,
-    100 - state[0].position.y * scale
+    100 - state.character.position.x * scale,
+    100 - state.character.position.y * scale
   );
-
+  drawDisplayableEntity(
+    state.character,
+    time,
+    getCharacterScreenPos(state.character)
+  );
   ctx.fillStyle = 'green';
-  state.map((entity, index) => {
-    const screenPos =
-      index === 0
-        ? getCharacterScreenPos(state[0])
-        : getScreenPos(entity, state[0]);
-    if (entity.display) {
-      drawDisplayableEntity(entity, time, screenPos);
-    } else
-      ctx.fillRect(
-        screenPos.x,
-        screenPos.y,
-        entity.size.x * scale,
-        entity.size.y * scale
-      );
-  });
+  state.obstacles.forEach((entity) => renderEntity(entity, state, time));
 };
 
 export default render;

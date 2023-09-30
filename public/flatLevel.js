@@ -15,18 +15,21 @@ const character = {
   },
 };
 
-const platform1 = {
-  name: 'platform1',
+const obstacle1 = {
+  name: 'obstacle1',
   position: { x: 16, y: 128 },
   size: { x: 280, y: 16 },
 };
 
-const platform2 = {
-  name: 'platform2',
+const obstacle2 = {
+  name: 'obstacle2',
   position: { x: 128, y: 64 },
   size: { x: 16, y: 16 },
 };
 
-const flatLevel = [character, platform1, platform2];
+const flatLevel = {
+  character,
+  obstacles: [obstacle1, obstacle2],
+};
 
 export default flatLevel;

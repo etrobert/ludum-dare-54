@@ -40,7 +40,7 @@ const gameLoop = () => {
   const timeDelta = currentTime - previousTime;
   previousTime = currentTime;
 
-  state[0].acceleration = getUserAcceleration(); // TODO: Preserve existing acceleration
+  state.character.acceleration = getUserAcceleration(); // TODO: Preserve existing acceleration
   state = updateState(state, timeDelta);
 
   render(state, currentTime);
