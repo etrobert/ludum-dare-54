@@ -1,5 +1,4 @@
-const enemyFrames = new Image();
-enemyFrames.src = 'assets/images/animations/jellyfish-jump.png';
+import { jellyfishJumpAnimation } from './animations.js';
 
 const enemy = {
   name: 'enemy',
@@ -10,12 +9,7 @@ const enemy = {
   acceleration: { x: 0.0, y: 0 },
   //   acceleration: { x: 0.001, y: 0 },
   size: { x: 32, y: 32 },
-  display: {
-    image: enemyFrames,
-    sw: 16,
-    sh: 16,
-    animationFrames: 8,
-  },
+  display: jellyfishJumpAnimation,
 };
 const createEnemy = (position) => ({ ...enemy, position });
 

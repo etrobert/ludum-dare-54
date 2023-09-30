@@ -1,32 +1,4 @@
-const jellyfishImage = new Image();
-jellyfishImage.src = 'assets/images/animations/jellyfish.png';
-
-const jellyfishAnimation = {
-  image: jellyfishImage,
-  sw: 16,
-  sh: 16,
-  animationFrames: 16,
-};
-
-const characterImage = new Image();
-characterImage.src = 'assets/images/animations/character.png';
-
-const characterAnimation = {
-  image: characterImage,
-  sw: 50,
-  sh: 50,
-  animationFrames: 1,
-};
-
-const characterWalkImage = new Image();
-characterWalkImage.src = 'assets/images/animations/character-walk-right.png';
-
-const characterWalkAnimation = {
-  image: characterWalkImage,
-  sw: 64,
-  sh: 64,
-  animationFrames: 4,
-};
+import { characterWalkAnimation } from './animations.js';
 
 const character = {
   name: 'character',
