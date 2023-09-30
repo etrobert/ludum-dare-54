@@ -236,6 +236,13 @@ const resetDash = (state, currentTime) => {
   return state;
 };
 
+const applyDashDamage = (state) => {
+  const enemies = state.enemies.filter((enemy) =>
+    radiusCollision(enemy, state.character)
+  );
+  return { ...state, enemies };
+};
+
 const invulnerabilityTime = 1 * 1000;
 
 const updateState = (state, timeDelta, currentTime) => {
@@ -253,6 +260,8 @@ const updateState = (state, timeDelta, currentTime) => {
     enemy = updateSpeed(enemy, timeDelta);
     return updatePosition(enemy, state, timeDelta);
   });
+
+  state = state.character.dashing ? applyDashDamage(state) : state;
 
   state = updateShroud(state, timeDelta);
   return currentTime - state.character.lastInvulnerability < invulnerabilityTime

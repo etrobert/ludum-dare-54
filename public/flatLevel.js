@@ -20,6 +20,7 @@ const flatLevel = {
   enemies: [],
   shroudRadius: 512,
   obstacles: [],
+  lastSpawn: 0,
 };
 
 export default flatLevel;
