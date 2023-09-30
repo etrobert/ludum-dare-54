@@ -3,6 +3,7 @@ enemyFrames.src = 'assets/images/animations/jellyfish-jump.png';
 
 const enemy = {
   name: 'enemy',
+  hitBoxRadius: 10,
   position: { x: 32, y: 32 },
   speed: { x: 100 / 1000, y: 0 }, // px per ms
   accelerationconstant: 1 / 10000,

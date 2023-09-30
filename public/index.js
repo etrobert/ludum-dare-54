@@ -44,7 +44,7 @@ const gameLoop = () => {
   previousTime = currentTime;
 
   state.character.acceleration = getUserAcceleration(); // TODO: Preserve existing acceleration
-  state = updateState(state, timeDelta);
+  state = updateState(state, timeDelta, currentTime);
 
   render(state, currentTime);
 };
@@ -87,4 +87,4 @@ document.addEventListener('keydown', (event) => {
 
 menu.addEventListener('click', play);
 
-play(); // TODO: Remove autoplay
+// play(); // TODO: Remove autoplay

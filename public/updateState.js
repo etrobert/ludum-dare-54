@@ -1,3 +1,4 @@
+import { plotHealth } from './plotHealth.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 
 const collision = (entity1, entity2) =>
@@ -184,7 +185,47 @@ const updateShroud = (state, timeDelta) => ({
   shroudRadius: Math.max(state.shroudRadius - shroudShrinkSpeed * timeDelta, 0),
 });
 
-const updateState = (state, timeDelta) => {
+const damage = 1;
+
+const hitCharacter = (state, currentTime) => {
+  console.log(state);
+  console.log(currentTime);
+  const newHealth = state.character.health - damage;
+  plotHealth(newHealth);
+  return (state = {
+    ...state,
+    character: {
+      ...state.character,
+      lastInvulnerability: currentTime,
+      health: newHealth,
+    },
+  });
+};
+
+const radiusCollision = (entity1, entity2) => {
+  const distanceVector = addVectors(
+    entity1.position,
+    multiplyVector(-1, entity2.position)
+  );
+  const d2 =
+    distanceVector.x * distanceVector.x + distanceVector.y * distanceVector.y;
+  return (
+    d2 <
+    (entity1.hitBoxRadius + entity2.hitBoxRadius) *
+      (entity1.hitBoxRadius + entity2.hitBoxRadius)
+  );
+};
+
+const applyEnemyDamage = (state, currentTime) => {
+  const hits = state.enemies.some((enemy) =>
+    radiusCollision(enemy, state.character)
+  );
+  return hits ? hitCharacter(state, currentTime) : state;
+};
+
+const invulnerabilityTime = 1 * 1000;
+
+const updateState = (state, timeDelta, currentTime) => {
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state, timeDelta);
 
@@ -195,7 +236,8 @@ const updateState = (state, timeDelta) => {
   });
 
   state = updateShroud(state, timeDelta);
-
-  return state;
+  return currentTime - state.character.lastInvulnerability < invulnerabilityTime
+    ? state
+    : applyEnemyDamage(state, currentTime);
 };
 export default updateState;

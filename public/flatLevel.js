@@ -3,8 +3,10 @@ jellyfishImage.src = 'assets/images/animations/jellyfish.png';
 
 const character = {
   name: 'character',
-  health: 2,
+  health: 3,
   maxHealth: 3,
+  lastInvulnerability: 0,
+  hitBoxRadius: 10,
   position: { x: 32, y: 32 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
