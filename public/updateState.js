@@ -238,8 +238,8 @@ const resetDash = (state, currentTime) => {
 };
 
 const applyDashDamage = (state) => {
-  const enemies = state.enemies.filter((enemy) =>
-    radiusCollision(enemy, state.character)
+  const enemies = state.enemies.filter(
+    (enemy) => !radiusCollision(enemy, state.character)
   );
   return { ...state, enemies };
 };
