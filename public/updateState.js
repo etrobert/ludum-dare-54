@@ -3,7 +3,7 @@ import {
   characterWalkLeftAnimation,
 } from './animations.js';
 import { plotHealth } from './plotHealth.js';
-import { squaredDistance } from './entity.js';
+import { entityCenter, distanceVector, squaredDistance } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 
 const collision = (entity1, entity2) =>
@@ -168,10 +168,7 @@ const updatePosition = (entity, state, timeDelta) => {
 };
 
 const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
-  const vectortoCharacter = addVectors(
-    characterPos,
-    multiplyVector(-1, enemy.position)
-  );
+  const vectortoCharacter = distanceVector(characterPos, enemy);
   const normVectortoCharacter = normalizeVector(vectortoCharacter);
   enemy.accelerationconstant * timeDelta;
   return {
@@ -233,7 +230,7 @@ const updateState = (state, timeDelta, currentTime) => {
     state.character.display = characterWalkRightAnimation;
 
   state.enemies = state.enemies.map((enemy) => {
-    enemy = updateEnemyAcceleration(enemy, state.character.position, timeDelta);
+    enemy = updateEnemyAcceleration(enemy, state.character, timeDelta);
     enemy = updateSpeed(enemy, timeDelta);
     return updatePosition(enemy, state, timeDelta);
   });
