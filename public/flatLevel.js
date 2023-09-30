@@ -1,6 +1,23 @@
 const jellyfishImage = new Image();
 jellyfishImage.src = 'assets/images/animations/jellyfish.png';
 
+const jellyfishAnimation = {
+  image: jellyfishImage,
+  sw: 16,
+  sh: 16,
+  animationFrames: 16,
+};
+
+const characterImage = new Image();
+characterImage.src = 'assets/images/animations/character.png';
+
+const characterAnimation = {
+  image: characterImage,
+  sw: 50,
+  sh: 50,
+  animationFrames: 1,
+};
+
 const character = {
   name: 'character',
   health: 3,
@@ -10,13 +27,8 @@ const character = {
   position: { x: 32, y: 32 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
-  size: { x: 32, y: 32 },
-  display: {
-    image: jellyfishImage,
-    sw: 16,
-    sh: 16,
-    animationFrames: 16,
-  },
+  size: { x: 50, y: 50 },
+  display: characterAnimation,
 };
 
 const obstacle1 = {
