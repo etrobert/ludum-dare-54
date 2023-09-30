@@ -5,7 +5,7 @@ import { getScreenPos, getCharacterScreenPos } from './screen-pos.js';
 ctx.imageSmoothingEnabled = false;
 
 const backgroundImage = new Image();
-backgroundImage.src = 'assets/images/backgrounds/sea-world.png';
+backgroundImage.src = 'assets/images/backgrounds/abandonned-tiles.png';
 
 const timePerFrame = 100; // ms
 
