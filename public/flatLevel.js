@@ -18,6 +18,16 @@ const characterAnimation = {
   animationFrames: 1,
 };
 
+const characterWalkImage = new Image();
+characterWalkImage.src = 'assets/images/animations/character-walk.png';
+
+const characterWalkAnimation = {
+  image: characterWalkImage,
+  sw: 50,
+  sh: 50,
+  animationFrames: 4,
+};
+
 const character = {
   name: 'character',
   health: 3,
@@ -28,7 +38,7 @@ const character = {
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
   size: { x: 50, y: 50 },
-  display: characterAnimation,
+  display: characterWalkAnimation,
 };
 
 const obstacle1 = {
