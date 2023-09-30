@@ -1,4 +1,5 @@
 import { plotHealth } from './plotHealth.js';
+import { squaredDistance } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 
 const collision = (entity1, entity2) =>
@@ -201,20 +202,7 @@ const hitCharacter = (state, currentTime) => {
 };
 
 const radiusCollision = (entity1, entity2) => {
-  const entity1Center = addVectors(
-    entity1.position,
-    multiplyVector(0.5, entity1.size)
-  );
-  const entity2Center = addVectors(
-    entity2.position,
-    multiplyVector(0.5, entity2.size)
-  );
-  const distanceVector = addVectors(
-    entity1Center,
-    multiplyVector(-1, entity2Center)
-  );
-  const d2 =
-    distanceVector.x * distanceVector.x + distanceVector.y * distanceVector.y;
+  const d2 = squaredDistance(entity1, entity2);
   return (
     d2 <
     (entity1.hitBoxRadius + entity2.hitBoxRadius) *
