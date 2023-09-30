@@ -1,10 +1,8 @@
-import { addVectors, multiplyVector } from './vector.js';
+import { ctx, scale, canvas } from './graphics.js';
+import { startShroud, endShroud } from './shroud.js';
+import { getScreenPos, getCharacterScreenPos } from './screen-pos.js';
 
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
-
-const scale = 2;
 
 const backgroundImage = new Image();
 backgroundImage.src = 'assets/images/backgrounds/sea-world.png';
@@ -26,21 +24,6 @@ const drawDisplayableEntity = (entity, time, screenPos) => {
   );
 };
 
-const getCharacterScreenPos = (character) => ({
-  x: canvas.width / 2 - (character.size.x * scale) / 2,
-  y: canvas.height / 2 - (character.size.y * scale) / 2,
-});
-
-const getScreenPos = (entity, character) => {
-  const characterScreenPos = getCharacterScreenPos(character);
-
-  return addVectors(
-    multiplyVector(scale, entity.position),
-    characterScreenPos,
-    multiplyVector(-scale, character.position)
-  );
-};
-
 const renderEntity = (entity, state, time) => {
   const screenPos = getScreenPos(entity, state.character);
   if (entity.display) {
@@ -56,6 +39,9 @@ const renderEntity = (entity, state, time) => {
 
 const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  startShroud(state);
+
   ctx.drawImage(
     backgroundImage,
     100 - state.character.position.x * scale,
@@ -69,6 +55,8 @@ const render = (state, time) => {
   ctx.fillStyle = 'green';
   state.obstacles.forEach((entity) => renderEntity(entity, state, time));
   state.enemies.forEach((entity) => renderEntity(entity, state, time));
+
+  endShroud();
 };
 
 export default render;
