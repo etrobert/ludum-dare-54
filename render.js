@@ -5,7 +5,7 @@ ctx.imageSmoothingEnabled = false;
 const scale = 2.5;
 
 const jellyfishImage = new Image();
-jellyfishImage.src = 'jellyfish.png';
+jellyfishImage.src = 'assets/images/animations/jellyfish.png';
 
 const animationFrames = 16;
 const timePerFrame = 100; // ms
