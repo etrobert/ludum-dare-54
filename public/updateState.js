@@ -188,8 +188,6 @@ const updateShroud = (state, timeDelta) => ({
 const damage = 1;
 
 const hitCharacter = (state, currentTime) => {
-  console.log(state);
-  console.log(currentTime);
   const newHealth = state.character.health - damage;
   plotHealth(newHealth);
   return (state = {
