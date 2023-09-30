@@ -3,12 +3,21 @@ const gravity = {
   y: 0.2 / 1000,
 };
 
+const jellyfishImage = new Image();
+jellyfishImage.src = 'assets/images/animations/jellyfish.png';
+
 const character = {
   name: 'character',
   position: { x: 30, y: 30 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: gravity,
   size: { x: 20, y: 20 },
+  display: {
+    image: jellyfishImage,
+    sw: 16,
+    sh: 16,
+    animationFrames: 16,
+  },
 };
 
 const platform1 = {

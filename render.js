@@ -4,23 +4,20 @@ ctx.imageSmoothingEnabled = false;
 
 const scale = 2.5;
 
-const jellyfishImage = new Image();
-jellyfishImage.src = 'assets/images/animations/jellyfish.png';
-
-const animationFrames = 16;
 const timePerFrame = 100; // ms
 
 const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'green';
-  state.map((entity, index) => {
-    if (index === 0)
+  state.map((entity) => {
+    if (entity.display)
       ctx.drawImage(
-        jellyfishImage,
-        16 * (Math.floor(time / timePerFrame) % animationFrames),
+        entity.display.image,
+        entity.display.sw *
+          (Math.floor(time / timePerFrame) % entity.display.animationFrames),
         0,
-        16,
-        16,
+        entity.display.sw,
+        entity.display.sh,
         entity.position.x * scale,
         entity.position.y * scale,
         entity.size.x * scale,
