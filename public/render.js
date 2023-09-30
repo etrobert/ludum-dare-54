@@ -68,6 +68,7 @@ const render = (state, time) => {
   );
   ctx.fillStyle = 'green';
   state.obstacles.forEach((entity) => renderEntity(entity, state, time));
+  state.enemies.forEach((entity) => renderEntity(entity, state, time));
 };
 
 export default render;

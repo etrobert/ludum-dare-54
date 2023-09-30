@@ -1,5 +1,6 @@
 import render from './render.js';
 import updateState from './updateState.js';
+import { spawnEnemy } from './enemy.js';
 import { playMusic, pauseMusic } from './audio/backgroundMusic.js';
 
 import squareLevel from './squareLevel.js';
@@ -7,6 +8,7 @@ import flatLevel from './flatLevel.js';
 import { multiplyVector } from './vector.js';
 
 let state = flatLevel;
+state = spawnEnemy(state);
 
 let previousTime = Date.now();
 

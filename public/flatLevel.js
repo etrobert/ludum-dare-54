@@ -29,6 +29,7 @@ const obstacle2 = {
 
 const flatLevel = {
   character,
+  enemies: [],
   obstacles: [obstacle1, obstacle2],
 };
 
