@@ -6,7 +6,8 @@ const collision = (entity1, entity2) =>
   entity1.position.y < entity2.position.y + entity2.size.y &&
   entity1.position.y + entity1.size.y > entity2.position.y;
 
-const resistanceConstant = 20 / 1000;
+const resistanceConstant = 200 / 1000;
+const minSpeed = 0.01;
 
 const updateSpeed = (entity, timeDelta) => {
   if (!entity.speed) return entity;
@@ -19,6 +20,8 @@ const updateSpeed = (entity, timeDelta) => {
   const accelerationImpact = multiplyVector(timeDelta, entity.acceleration);
 
   const speed = addVectors(resistanceImpact, accelerationImpact, entity.speed);
+  speed.x = Math.abs(speed.x) < minSpeed ? 0 : speed.x;
+  speed.y = Math.abs(speed.y) < minSpeed ? 0 : speed.y;
 
   return { ...entity, speed };
 };
