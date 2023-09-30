@@ -1,4 +1,4 @@
-import { characterWalkAnimation } from './animations.js';
+import { characterWalkRightAnimation } from './animations.js';
 
 const character = {
   name: 'character',
@@ -10,7 +10,7 @@ const character = {
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
   size: { x: 64, y: 64 },
-  display: characterWalkAnimation,
+  display: characterWalkRightAnimation,
 };
 
 const obstacle1 = {

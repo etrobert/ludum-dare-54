@@ -1,3 +1,7 @@
+import {
+  characterWalkRightAnimation,
+  characterWalkLeftAnimation,
+} from './animations.js';
 import { plotHealth } from './plotHealth.js';
 import { squaredDistance } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
@@ -222,6 +226,11 @@ const invulnerabilityTime = 1 * 1000;
 const updateState = (state, timeDelta, currentTime) => {
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state, timeDelta);
+
+  if (state.character.speed.x < 0)
+    state.character.display = characterWalkLeftAnimation;
+  else if (state.character.speed.x > 0)
+    state.character.display = characterWalkRightAnimation;
 
   state.enemies = state.enemies.map((enemy) => {
     enemy = updateEnemyAcceleration(enemy, state.character.position, timeDelta);

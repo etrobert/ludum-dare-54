@@ -28,11 +28,22 @@ const characterAnimation = {
   animationFrames: 1,
 };
 
-const characterWalkImage = new Image();
-characterWalkImage.src = 'assets/images/animations/character-walk-right.png';
+const characterWalkRightImage = new Image();
+characterWalkRightImage.src =
+  'assets/images/animations/character-walk-right.png';
 
-const characterWalkAnimation = {
-  image: characterWalkImage,
+const characterWalkRightAnimation = {
+  image: characterWalkRightImage,
+  sw: 64,
+  sh: 64,
+  animationFrames: 4,
+};
+
+const characterWalkLeftImage = new Image();
+characterWalkLeftImage.src = 'assets/images/animations/character-walk-left.png';
+
+const characterWalkLeftAnimation = {
+  image: characterWalkLeftImage,
   sw: 64,
   sh: 64,
   animationFrames: 4,
@@ -42,5 +53,6 @@ export {
   jellyfishAnimation,
   jellyfishJumpAnimation,
   characterAnimation,
-  characterWalkAnimation,
+  characterWalkRightAnimation,
+  characterWalkLeftAnimation,
 };
