@@ -6,6 +6,7 @@ const playMusic = (music) => {
     AudioCtx.resume();
   }
   music.play();
+  music.loop = true;
 };
 
 const pauseMusic = (music) => {
