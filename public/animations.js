@@ -38,6 +38,16 @@ const enemyWalkRightAnimation = {
   animationFrames: 7,
 };
 
+const enemyWalkLeftImage = new Image();
+enemyWalkLeftImage.src = 'assets/images/animations/enemy-walk-left.png';
+
+const enemyWalkLeftAnimation = {
+  image: enemyWalkLeftImage,
+  sw: 64,
+  sh: 64,
+  animationFrames: 7,
+};
+
 const characterImage = new Image();
 characterImage.src = 'assets/images/animations/character.png';
 
@@ -97,6 +107,7 @@ export {
   jellyfishJumpAnimation,
   enemyIdleAnimation,
   enemyWalkRightAnimation,
+  enemyWalkLeftAnimation,
   characterAnimation,
   characterWalkRightAnimation,
   characterWalkLeftAnimation,
