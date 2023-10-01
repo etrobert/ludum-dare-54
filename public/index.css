@@ -6,6 +6,7 @@ body {
 body {
   display: grid;
   place-items: center;
+  background-color: black;
 }
 
 body,
@@ -19,10 +20,6 @@ button {
   font-size: 1.5em;
   border-radius: 1rem;
   padding: 1rem 2rem;
-}
-
-canvas {
-  background: lightblue;
 }
 
 li {
