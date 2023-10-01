@@ -1,5 +1,5 @@
 const audioCtx = new AudioContext();
-const backgroundMusic = document.querySelector('#background-music');
+const backgroundMusic = document.querySelector('#game-music');
 const track = audioCtx.createMediaElementSource(backgroundMusic);
 track.connect(audioCtx.destination);
 
