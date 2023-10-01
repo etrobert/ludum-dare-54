@@ -4,7 +4,7 @@ const enemyAccelerationConstant = 4 / 10000;
 
 const enemy = {
   name: 'enemy',
-  hitBoxRadius: 12,
+  hitBoxRadius: 15,
   position: { x: 32, y: 32 },
   speed: { x: 100 / 1000, y: 0 }, // px per ms
   acceleration: { x: 0.0, y: 0 },

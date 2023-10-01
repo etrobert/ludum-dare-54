@@ -7,7 +7,7 @@ const character = {
   health: 3,
   maxHealth: 3,
   lastInvulnerability: 0,
-  hitBoxRadius: 10,
+  hitBoxRadius: 20,
   dashing: false,
   lastDash: 0,
   position: { x: 0, y: 0 },

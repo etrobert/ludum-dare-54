@@ -7,6 +7,15 @@ ctx.imageSmoothingEnabled = false;
 
 const timePerFrame = 100; // ms
 
+const drawHitbox = (entity, state) => {
+  const pos = getScreenPos(
+    { position: entity.position, size: { x: 0, y: 0 } },
+    state.character
+  );
+  ctx.arc(pos.x, pos.y, entity.hitBoxRadius, 0, 2 * Math.PI);
+  ctx.stroke();
+};
+
 const getCurrentFrame = (entity, time) =>
   Math.floor((time - (entity.animationStart ?? 0)) / timePerFrame) %
   entity.display.animationFrames;
