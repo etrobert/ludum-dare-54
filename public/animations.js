@@ -59,6 +59,16 @@ const characterWalkLeftAnimation = {
   animationFrames: 4,
 };
 
+const characterDashLeftImage = new Image();
+characterDashLeftImage.src = 'assets/images/animations/character-dash-left.png';
+
+const characterDashLeftAnimation = {
+  image: characterDashLeftImage,
+  sw: 128,
+  sh: 64,
+  animationFrames: 4,
+};
+
 export {
   jellyfishAnimation,
   jellyfishJumpAnimation,
@@ -66,4 +76,5 @@ export {
   characterAnimation,
   characterWalkRightAnimation,
   characterWalkLeftAnimation,
+  characterDashLeftAnimation,
 };
