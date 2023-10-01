@@ -70,6 +70,18 @@ const characterDashLeftAnimation = {
   offset: { x: -64, y: 0 },
 };
 
+const characterDashRightImage = new Image();
+characterDashRightImage.src =
+  'assets/images/animations/character-dash-right.png';
+
+const characterDashRightAnimation = {
+  image: characterDashRightImage,
+  sw: 128,
+  sh: 64,
+  animationFrames: 10,
+  offset: { x: 64, y: 0 },
+};
+
 export {
   jellyfishAnimation,
   jellyfishJumpAnimation,
@@ -78,4 +90,5 @@ export {
   characterWalkRightAnimation,
   characterWalkLeftAnimation,
   characterDashLeftAnimation,
+  characterDashRightAnimation,
 };

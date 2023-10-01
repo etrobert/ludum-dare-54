@@ -2,6 +2,7 @@ import {
   characterWalkRightAnimation,
   characterWalkLeftAnimation,
   characterDashLeftAnimation,
+  characterDashRightAnimation,
 } from './animations.js';
 import { plotHealth } from './plotHealth.js';
 import { distanceVector, squaredDistance, collisionRadius } from './entity.js';
@@ -127,20 +128,35 @@ const applyDashDamage = (state) => {
 const invulnerabilityTime = 1 * 1000;
 const spawnTimer = 2 * 1000;
 
+const getDirection = (character) => {
+  if (character.speed.x < 0) return 'left';
+  if (character.speed.x > 0) return 'right';
+  return 'none';
+};
+
 const updateState = (state, timeDelta, currentTime) => {
   state = resetDash(state, currentTime);
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state.obstacles, timeDelta);
 
+  const direction = getDirection(state.character);
+
   if (state.character.dashing) {
-    state.character.display = characterDashLeftAnimation;
-    state.character.size = { x: 256, y: 128 };
-  } else if (state.character.speed.x < 0) {
-    state.character.display = characterWalkLeftAnimation;
-    state.character.size = { x: 128, y: 128 };
-  } else if (state.character.speed.x > 0) {
-    state.character.display = characterWalkRightAnimation;
-    state.character.size = { x: 128, y: 128 };
+    if (direction === 'left') {
+      state.character.display = characterDashLeftAnimation;
+      state.character.size = { x: 256, y: 128 };
+    } else if (direction === 'right') {
+      state.character.display = characterDashRightAnimation;
+      state.character.size = { x: 256, y: 128 };
+    }
+  } else {
+    if (direction === 'right') {
+      state.character.display = characterWalkRightAnimation;
+      state.character.size = { x: 128, y: 128 };
+    } else if (direction === 'left') {
+      state.character.display = characterWalkLeftAnimation;
+      state.character.size = { x: 128, y: 128 };
+    }
   }
 
   state.enemies = state.enemies.map((enemy, index) => {
