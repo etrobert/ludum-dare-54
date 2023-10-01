@@ -6,6 +6,7 @@ import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
 import { enemyDeath, lossHealthSfx, shroudMusic } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
+import { partition } from './tools.js';
 
 const resistanceConstant = 100 / 1000;
 const minSpeed = 0.03;
@@ -114,15 +115,15 @@ const resetDash = (state, currentTime) => {
 };
 
 const applyDashDamage = (state) => {
-  const countEnemies = state.enemies.length;
-  const enemies = state.enemies.filter(
-    (enemy) => !radiusCollision(enemy, state.character)
+  const [enemiesHit, enemiesNotHit] = partition(state.enemies, (enemy) =>
+    radiusCollision(enemy, state.character)
   );
-  const countKills = countEnemies - enemies.length;
-  state.score = state.score + countKills;
-  if (countKills > 0) playSfx(enemyDeath);
+
+  state.score += enemiesHit.length;
+
+  if (enemiesHit.length > 0) playSfx(enemyDeath);
   document.getElementById('score').innerHTML = state.score;
-  return { ...state, enemies };
+  return { ...state, enemies: enemiesNotHit };
 };
 
 const updateShroudVolume = (position, shroudRadius) => {

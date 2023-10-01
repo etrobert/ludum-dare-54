@@ -12,4 +12,16 @@ const combination = (a1, a2) => a1.flatMap((e1) => a2.map((e2) => [e1, e2]));
  */
 const range2d = (n1, n2) => combination(range(n1), range(n2));
 
-export { range, combination, range2d };
+const partition = (arr, predicate) => {
+  const yes = [];
+  const no = [];
+
+  arr.forEach((element) => {
+    if (predicate(element)) yes.push(element);
+    else no.push(element);
+  });
+
+  return [yes, no];
+};
+
+export { range, combination, range2d, partition };
