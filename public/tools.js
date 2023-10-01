@@ -24,4 +24,8 @@ const partition = (arr, predicate) => {
   return [yes, no];
 };
 
-export { range, combination, range2d, partition };
+const randomInteger = (n) => Math.floor(Math.random() * n);
+
+const randomElement = (arr) => arr[randomInteger(arr.length)];
+
+export { range, combination, range2d, partition, randomInteger, randomElement };
