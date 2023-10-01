@@ -2,7 +2,7 @@ import { plotHealth } from './plotHealth.js';
 import { distanceVector, squaredDistance, collisionRadius } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
-import { spawnEnemy } from './enemy.js';
+import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
 
 const resistanceConstant = 100 / 1000;
@@ -43,14 +43,14 @@ const updatePosition = (entity, collidables, timeDelta) => {
 };
 
 const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
-  const vectortoCharacter = distanceVector(characterPos, enemy);
-  const normVectortoCharacter = normalizeVector(vectortoCharacter);
-  enemy.accelerationconstant * timeDelta;
+  const vectorToCharacter = distanceVector(characterPos, enemy);
+  const normVectorToCharacter = normalizeVector(vectorToCharacter);
+
   return {
     ...enemy,
     acceleration: multiplyVector(
-      enemy.accelerationconstant * timeDelta,
-      normVectortoCharacter
+      enemyAccelerationConstant * timeDelta,
+      normVectorToCharacter
     ),
   };
 };
