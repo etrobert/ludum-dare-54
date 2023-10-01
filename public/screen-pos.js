@@ -1,18 +1,14 @@
-import { scale, canvas } from './graphics.js';
+import { canvas } from './graphics.js';
 import { addVectors, multiplyVector } from './vector.js';
 
-const getCharacterScreenPos = (character) => ({
-  x: canvas.width / 2 - (character.size.x * scale) / 2,
-  y: canvas.height / 2 - (character.size.y * scale) / 2,
-});
+const canvasSize = { x: canvas.width, y: canvas.height };
 
 const getScreenPos = (entity, character) => {
-  const characterScreenPos = getCharacterScreenPos(character);
-
   return addVectors(
-    multiplyVector(scale, entity.position),
-    characterScreenPos,
-    multiplyVector(-scale, character.position)
+    multiplyVector(0.5, canvasSize),
+    entity.position,
+    multiplyVector(-1, character.position),
+    multiplyVector(-1 / 2, entity.size)
   );
 };
 

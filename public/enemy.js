@@ -5,10 +5,10 @@ const enemy = {
   hitBoxRadius: 12,
   position: { x: 32, y: 32 },
   speed: { x: 100 / 1000, y: 0 }, // px per ms
-  accelerationconstant: 1 / 10000,
+  accelerationconstant: 4 / 10000,
   acceleration: { x: 0.0, y: 0 },
   //   acceleration: { x: 0.001, y: 0 },
-  size: { x: 64, y: 64 },
+  size: { x: 128, y: 128 },
   display: enemyIdleAnimation,
 };
 const createEnemy = (position) => ({ ...enemy, position });
