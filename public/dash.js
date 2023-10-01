@@ -1,7 +1,7 @@
 import { multiplyVector, normalizeVector } from './vector.js';
 
 const dashCooldown = 1 * 1000;
-const dashspeed = 10 / 1000;
+const dashSpeed = 10 / 1000;
 const dashDuration = 0.5 * 1000;
 
 const dash = (state, currentTime) => {
@@ -11,10 +11,10 @@ const dash = (state, currentTime) => {
   )
     return state;
   const acceleration = multiplyVector(
-    dashspeed,
+    dashSpeed,
     normalizeVector(state.character.speed)
   );
-  state = {
+  return {
     ...state,
     character: {
       ...state.character,
@@ -24,7 +24,6 @@ const dash = (state, currentTime) => {
       acceleration,
     },
   };
-  return state;
 };
 
 export { dash, dashCooldown, dashDuration };
