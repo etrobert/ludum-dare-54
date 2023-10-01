@@ -1,7 +1,7 @@
 import { ctx, canvas } from './graphics.js';
 import { startShroud, endShroud } from './shroud.js';
 import { getScreenPos } from './screen-pos.js';
-import { backgroundImage, backgroundEntity } from './background.js';
+import { backgroundEntity } from './background.js';
 
 ctx.imageSmoothingEnabled = false;
 
@@ -32,11 +32,13 @@ const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   startShroud(state);
 
-  renderEntity(backgroundEntity, state, time);
-  renderEntity(state.character, state, time);
   ctx.fillStyle = 'green';
-  state.obstacles.forEach((entity) => renderEntity(entity, state, time));
-  state.enemies.forEach((entity) => renderEntity(entity, state, time));
+  [
+    backgroundEntity,
+    state.character,
+    ...state.obstacles,
+    ...state.enemies,
+  ].forEach((entity) => renderEntity(entity, state, time));
 
   endShroud();
 };
