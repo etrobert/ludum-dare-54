@@ -1,6 +1,7 @@
 import {
   characterWalkRightAnimation,
   characterWalkLeftAnimation,
+  characterDashLeftAnimation,
 } from './animations.js';
 import { plotHealth } from './plotHealth.js';
 import { distanceVector, squaredDistance, collisionRadius } from './entity.js';
@@ -131,10 +132,16 @@ const updateState = (state, timeDelta, currentTime) => {
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state.obstacles, timeDelta);
 
-  if (state.character.speed.x < 0)
+  if (state.character.dashing) {
+    state.character.display = characterDashLeftAnimation;
+    state.character.size = { x: 256, y: 128 };
+  } else if (state.character.speed.x < 0) {
     state.character.display = characterWalkLeftAnimation;
-  else if (state.character.speed.x > 0)
+    state.character.size = { x: 128, y: 128 };
+  } else if (state.character.speed.x > 0) {
     state.character.display = characterWalkRightAnimation;
+    state.character.size = { x: 128, y: 128 };
+  }
 
   state.enemies = state.enemies.map((enemy, index) => {
     enemy = updateEnemyAcceleration(enemy, state.character, timeDelta);

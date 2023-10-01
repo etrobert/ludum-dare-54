@@ -5,6 +5,7 @@ const canvasSize = { x: canvas.width, y: canvas.height };
 
 const getScreenPos = (entity, character) => {
   return addVectors(
+    entity?.display?.offset ?? { x: 0, y: 0 },
     multiplyVector(0.5, canvasSize),
     entity.position,
     multiplyVector(-1, character.position),

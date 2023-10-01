@@ -67,6 +67,7 @@ const characterDashLeftAnimation = {
   sw: 128,
   sh: 64,
   animationFrames: 4,
+  offset: { x: -64, y: 0 },
 };
 
 export {
