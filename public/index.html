@@ -6,6 +6,9 @@
     <title>Web Game Engine</title>
     <script type="module" src="index.js"></script>
     <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
     <audio id="game-music" src="assets/audio/music/game-music.mp3"></audio>
@@ -22,7 +25,6 @@
     <audio id="loss-health-sfx" src="assets/audio/sfx/loss-health-sfx.mp3"></audio>
     <audio id="shroud-music" src="assets/audio/sfx/shroud-music.mp3"></audio>
     <div id="game" >
-      <div id="score">0</div>
       <div class="health-bar" id="empty-health-bar"></div>
       <div class="health-bar" id="filled-health-bar"></div>
       <canvas width="948" height="533">
@@ -30,6 +32,9 @@
         <!-- An alternative text describing what your canvas displays. -->
       </canvas>
     </div>
-    <img id="start-menu" src="assets/images/interface/title-screen.jpeg" alt="">
+    <div id="start-menu" >
+    <img src="assets/images/interface/title-screen.jpeg" alt="">
+      <div id="score">0</div>
+    </div>
   </body>
 </html>
