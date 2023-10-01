@@ -18,6 +18,16 @@ const jellyfishJumpAnimation = {
   animationFrames: 8,
 };
 
+const enemyIdleImage = new Image();
+enemyIdleImage.src = 'assets/images/animations/enemy-idle.png';
+
+const enemyIdleAnimation = {
+  image: enemyIdleImage,
+  sw: 64,
+  sh: 64,
+  animationFrames: 8,
+};
+
 const characterImage = new Image();
 characterImage.src = 'assets/images/animations/character.png';
 
@@ -52,6 +62,7 @@ const characterWalkLeftAnimation = {
 export {
   jellyfishAnimation,
   jellyfishJumpAnimation,
+  enemyIdleAnimation,
   characterAnimation,
   characterWalkRightAnimation,
   characterWalkLeftAnimation,

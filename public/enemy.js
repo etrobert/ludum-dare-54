@@ -1,4 +1,4 @@
-import { jellyfishJumpAnimation } from './animations.js';
+import { enemyIdleAnimation } from './animations.js';
 
 const enemy = {
   name: 'enemy',
@@ -8,8 +8,8 @@ const enemy = {
   accelerationconstant: 1 / 10000,
   acceleration: { x: 0.0, y: 0 },
   //   acceleration: { x: 0.001, y: 0 },
-  size: { x: 32, y: 32 },
-  display: jellyfishJumpAnimation,
+  size: { x: 64, y: 64 },
+  display: enemyIdleAnimation,
 };
 const createEnemy = (position) => ({ ...enemy, position });
 
