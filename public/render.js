@@ -1,6 +1,6 @@
 import { ctx, scale, canvas } from './graphics.js';
 import { startShroud, endShroud } from './shroud.js';
-import { getScreenPos, getCharacterScreenPos } from './screen-pos.js';
+import { getScreenPos } from './screen-pos.js';
 import { backgroundImage, backgroundEntity } from './background.js';
 
 ctx.imageSmoothingEnabled = false;
@@ -51,7 +51,7 @@ const render = (state, time) => {
   drawDisplayableEntity(
     state.character,
     time,
-    getCharacterScreenPos(state.character)
+    getScreenPos(state.character, state.character)
   );
   ctx.fillStyle = 'green';
   state.obstacles.forEach((entity) => renderEntity(entity, state, time));

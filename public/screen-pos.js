@@ -16,4 +16,4 @@ const getScreenPos = (entity, character) => {
   );
 };
 
-export { getCharacterScreenPos, getScreenPos };
+export { getScreenPos };
