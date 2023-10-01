@@ -3,16 +3,10 @@ import {
   characterWalkLeftAnimation,
 } from './animations.js';
 import { plotHealth } from './plotHealth.js';
-import { distanceVector, squaredDistance } from './entity.js';
+import { distanceVector, squaredDistance, collisionRadius } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
 import { spawnEnemy } from './enemy.js';
-
-const collision = (entity1, entity2) =>
-  entity1.position.x < entity2.position.x + entity2.size.x &&
-  entity1.position.x + entity1.size.x > entity2.position.x &&
-  entity1.position.y < entity2.position.y + entity2.size.y &&
-  entity1.position.y + entity1.size.y > entity2.position.y;
 
 const resistanceConstant = 200 / 1000;
 const minSpeed = 0.01;
@@ -45,7 +39,7 @@ const updatePosition = (entity, collidables, timeDelta) => {
   };
 
   const colliding = collidables.some((collidable) =>
-    collision(futureEntity, collidable)
+    collisionRadius(futureEntity, collidable)
   );
 
   return colliding ? entity : futureEntity;

@@ -11,4 +11,23 @@ const squaredDistance = (entity1, entity2) => {
   return vector.x * vector.x + vector.y * vector.y;
 };
 
-export { entityCenter, distanceVector, squaredDistance };
+const collisionAABB = (entity1, entity2) =>
+  entity1.position.x < entity2.position.x + entity2.size.x &&
+  entity1.position.x + entity1.size.x > entity2.position.x &&
+  entity1.position.y < entity2.position.y + entity2.size.y &&
+  entity1.position.y + entity1.size.y > entity2.position.y;
+
+const collisionRadius = (entity1, entity2) => {
+  const collidingDistance = entity1.hitBoxRadius + entity1.hitBoxRadius;
+  return (
+    squaredDistance(entity1, entity2) < collidingDistance * collidingDistance
+  );
+};
+
+export {
+  entityCenter,
+  distanceVector,
+  squaredDistance,
+  collisionAABB,
+  collisionRadius,
+};

@@ -2,7 +2,7 @@ import { enemyIdleAnimation } from './animations.js';
 
 const enemy = {
   name: 'enemy',
-  hitBoxRadius: 10,
+  hitBoxRadius: 12,
   position: { x: 32, y: 32 },
   speed: { x: 100 / 1000, y: 0 }, // px per ms
   accelerationconstant: 1 / 10000,
