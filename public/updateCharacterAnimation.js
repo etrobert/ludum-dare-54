@@ -3,6 +3,7 @@ import {
   characterWalkLeftAnimation,
   characterDashLeftAnimation,
   characterDashRightAnimation,
+  characterIdleRightAnimation,
 } from './animations.js';
 
 const getDirection = (character) => {
@@ -24,6 +25,15 @@ const getCharacterAnimation = (character) => {
         direction === 'left'
           ? characterDashLeftAnimation
           : characterDashRightAnimation,
+    };
+
+  if (character.speed.x === 0 && character.speed.y === 0)
+    return {
+      size: {
+        x: 128,
+        y: 128,
+      },
+      display: characterIdleRightAnimation,
     };
 
   return {

@@ -58,6 +58,17 @@ const characterAnimation = {
   animationFrames: 1,
 };
 
+const characterIdleRightImage = new Image();
+characterIdleRightImage.src =
+  'assets/images/animations/character-idle-right.png';
+
+const characterIdleRightAnimation = {
+  image: characterIdleRightImage,
+  sw: 64,
+  sh: 64,
+  animationFrames: 12,
+};
+
 const characterWalkRightImage = new Image();
 characterWalkRightImage.src =
   'assets/images/animations/character-walk-right.png';
@@ -109,6 +120,7 @@ export {
   enemyWalkRightAnimation,
   enemyWalkLeftAnimation,
   characterAnimation,
+  characterIdleRightAnimation,
   characterWalkRightAnimation,
   characterWalkLeftAnimation,
   characterDashLeftAnimation,
