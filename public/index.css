@@ -10,7 +10,6 @@ body {
 }
 
 body,
-menu,
 button {
   margin: 0;
   padding: 0;
@@ -28,11 +27,14 @@ li {
 
 #score{
   color:white; 
+  position: absolute;
 }
 
-menu {
+#game {
+  height: 533px;
+}
+#start-menu{
   position: absolute;
-  color:white; 
 }
 
 .health-bar {
