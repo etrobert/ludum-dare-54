@@ -1,6 +1,6 @@
 import { multiplyVector } from './vector.js';
 
-const accelerationConstant = 2 / 1000;
+const accelerationConstant = 5 / 1000;
 const diagonalProjection = Math.cos(Math.PI / 4);
 
 const getUserAccelerationX = (controls) => {

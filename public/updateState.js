@@ -8,8 +8,8 @@ import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
 import { spawnEnemy } from './enemy.js';
 
-const resistanceConstant = 200 / 1000;
-const minSpeed = 0.01;
+const resistanceConstant = 100 / 1000;
+const minSpeed = 0.003;
 
 const updateSpeed = (entity, timeDelta) => {
   if (!entity.speed) return entity;
