@@ -14,7 +14,12 @@ const enemy = {
 const createEnemy = (position) => ({ ...enemy, position });
 
 const createEnemyOutScreen = (state) => {
-  const position = { x: 0, y: 0 };
+  const teta = 2 * Math.PI * Math.random();
+
+  const position = {
+    x: Math.cos(teta) * (state.shroudRadius + 50),
+    y: Math.sin(teta) * (state.shroudRadius + 50),
+  };
   return createEnemy(position);
 };
 
