@@ -1,11 +1,9 @@
 import { ctx, scale, canvas } from './graphics.js';
 import { startShroud, endShroud } from './shroud.js';
 import { getScreenPos, getCharacterScreenPos } from './screen-pos.js';
+import { backgroundImage, backgroundEntity } from './background.js';
 
 ctx.imageSmoothingEnabled = false;
-
-const backgroundImage = new Image();
-backgroundImage.src = 'assets/images/backgrounds/abandonned-tiles.png';
 
 const timePerFrame = 100; // ms
 
@@ -41,10 +39,14 @@ const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   startShroud(state);
 
+  const backgroundScreenPosition = getScreenPos(
+    backgroundEntity,
+    state.character
+  );
   ctx.drawImage(
     backgroundImage,
-    100 - state.character.position.x * scale,
-    100 - state.character.position.y * scale
+    backgroundScreenPosition.x,
+    backgroundScreenPosition.y
   );
   drawDisplayableEntity(
     state.character,

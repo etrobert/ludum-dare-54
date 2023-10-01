@@ -1,10 +1,17 @@
+import { backgroundEntity } from './background.js';
 import { canvas, ctx } from './graphics.js';
 import { getScreenPos } from './screen-pos.js';
+import { multiplyVector } from './vector.js';
+
+const position = multiplyVector(0.5, backgroundEntity.size);
 
 const startShroud = (state) => {
   const radius = state.shroudRadius;
   const { x: cx, y: cy } = getScreenPos(
-    { position: { x: 100, y: 100 }, size: { x: 2 * radius, y: 2 * radius } },
+    {
+      position,
+      size: { x: 2 * radius, y: 2 * radius },
+    },
     state.character
   );
   const radialGradient = ctx.createRadialGradient(cx, cy, 1, cx, cy, radius);
