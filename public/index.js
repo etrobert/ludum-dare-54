@@ -29,6 +29,12 @@ const gameLoop = () => {
 
   state = updateState(state, timeDelta, currentTime);
 
+  if (state.character.health === 0) {
+    state = flatLevel;
+    plotHealth(state.character.health);
+    pause();
+  }
+
   render(state, currentTime);
 };
 
