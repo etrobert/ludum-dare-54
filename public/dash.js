@@ -9,7 +9,7 @@ const dash = (state, currentTime) => {
     currentTime - state.character.lastDash < dashCooldown ||
     (state.character.speed.x === 0 && state.character.speed.y === 0)
   )
-    state;
+    return state;
   const acceleration = multiplyVector(
     dashspeed,
     normalizeVector(state.character.speed)

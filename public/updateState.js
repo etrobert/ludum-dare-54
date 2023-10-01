@@ -249,6 +249,7 @@ const applyDashDamage = (state) => {
 
 const invulnerabilityTime = 1 * 1000;
 const spawnTimer = 2 * 1000;
+
 const updateState = (state, timeDelta, currentTime) => {
   state = resetDash(state, currentTime);
   state.character = updateSpeed(state.character, timeDelta);

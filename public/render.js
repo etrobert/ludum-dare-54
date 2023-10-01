@@ -39,7 +39,6 @@ const renderEntity = (entity, state, time) => {
 
 const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   startShroud(state);
 
   ctx.drawImage(
