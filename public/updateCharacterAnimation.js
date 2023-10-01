@@ -5,12 +5,7 @@ import {
   characterDashRightAnimation,
   characterIdleRightAnimation,
 } from './animations.js';
-
-const getDirection = (character) => {
-  if (character.speed.x < 0) return 'left';
-  if (character.speed.x > 0) return 'right';
-  return 'none';
-};
+import getDirection from './getDirection.js';
 
 const getCharacterAnimation = (character) => {
   const direction = getDirection(character);
