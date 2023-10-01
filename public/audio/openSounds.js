@@ -16,9 +16,9 @@ const lossHealthSfx = document.querySelector('#loss-health-sfx');
 const tracklossHealthSfx = AudioCtx.createMediaElementSource(lossHealthSfx);
 tracklossHealthSfx.connect(AudioCtx.destination);
 
-const shroudSfx = document.querySelector('#shroud-sfx');
-const trackshroudSfx = AudioCtx.createMediaElementSource(shroudSfx);
-trackshroudSfx.connect(AudioCtx.destination);
+const shroudMusic = document.querySelector('#shroud-music');
+const trackshroudMusic = AudioCtx.createMediaElementSource(shroudMusic);
+trackshroudMusic.connect(AudioCtx.destination);
 
 const gameMusic = document.querySelector('#game-music');
 const gameMusicTrack = AudioCtx.createMediaElementSource(gameMusic);
@@ -34,7 +34,7 @@ export {
   dashSfx,
   enemyDeath,
   lossHealthSfx,
-  shroudSfx,
+  shroudMusic,
   gameMusic,
   startMusic,
 };

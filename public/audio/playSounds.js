@@ -1,5 +1,5 @@
 import { AudioCtx } from './openSounds.js';
-let currentMusic;
+let currentMusics;
 
 const playMusic = (music) => {
   if (AudioCtx.state === 'suspended') {
@@ -15,10 +15,10 @@ const pauseMusic = (music) => {
   music.pause();
 };
 
-const changeMusic = (music) => {
-  if (currentMusic !== undefined) pauseMusic(currentMusic);
-  currentMusic = music;
-  playMusic(music);
+const changeMusic = (musics) => {
+  if (currentMusics !== undefined) currentMusics.forEach(pauseMusic);
+  currentMusics = musics;
+  musics.forEach(playMusic);
 };
 
 const playSfx = (sfx) => {

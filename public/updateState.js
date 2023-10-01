@@ -4,7 +4,7 @@ import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
 import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
-import { enemyDeath, lossHealthSfx } from './audio/openSounds.js';
+import { enemyDeath, lossHealthSfx, shroudMusic } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
 
 const resistanceConstant = 100 / 1000;
@@ -125,10 +125,23 @@ const applyDashDamage = (state) => {
   return { ...state, enemies };
 };
 
+const updateShroudVolume = (position, shroudRadius) => {
+  const distToCenter = position.x * position.x + position.y * position.y;
+  console.log(distToCenter);
+  console.log(shroudRadius);
+  const level = Math.min(
+    Math.max((distToCenter / (shroudRadius * shroudRadius) - 0.5) * 2.5, 0),
+    1
+  );
+  console.log(level);
+  shroudMusic.volume = level;
+};
+
 const invulnerabilityTime = 1 * 1000;
 const spawnTimer = 2 * 1000;
 
 const updateState = (state, timeDelta, currentTime) => {
+  updateShroudVolume(state.character.position, state.shroudRadius);
   state = resetDash(state, currentTime);
   state.character = updateSpeed(state.character, timeDelta);
   state.character = updatePosition(state.character, state.obstacles, timeDelta);

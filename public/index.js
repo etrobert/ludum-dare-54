@@ -3,7 +3,7 @@ import { dash, dashCooldown } from './dash.js';
 import render from './render.js';
 import updateState from './updateState.js';
 import { spawnEnemy } from './enemy.js';
-import { gameMusic, startMusic } from './audio/openSounds.js';
+import { gameMusic, shroudMusic, startMusic } from './audio/openSounds.js';
 import { changeMusic } from './audio/playSounds.js';
 import flatLevel from './flatLevel.js';
 import getUserAcceleration from './getUserAcceleration.js';
@@ -62,13 +62,13 @@ const pause = () => {
   clearInterval(gameLoopInterval);
   gameLoopInterval = undefined;
   startMenu.style.display = 'block';
-  changeMusic(startMusic);
+  changeMusic([startMusic]);
 };
 
 const play = () => {
   startGameLoop();
   startMenu.style.display = 'none';
-  changeMusic(gameMusic);
+  changeMusic([gameMusic, shroudMusic]);
 };
 
 document.addEventListener('keydown', (event) => {
