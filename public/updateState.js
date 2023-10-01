@@ -4,7 +4,7 @@ import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
 import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
-import { enemyDeath } from './audio/openSounds.js';
+import { enemyDeath, lossHealthSfx } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
 
 const resistanceConstant = 100 / 1000;
@@ -69,6 +69,7 @@ const damage = 1;
 const hitCharacter = (state, currentTime) => {
   const newHealth = state.character.health - damage;
   plotHealth(newHealth);
+  playSfx(lossHealthSfx);
   return (state = {
     ...state,
     character: {
