@@ -77,7 +77,7 @@ const characterWalkRightAnimation = {
   image: characterWalkRightImage,
   sw: 64,
   sh: 64,
-  animationFrames: 4,
+  animationFrames: 6,
 };
 
 const characterWalkLeftImage = new Image();
@@ -87,7 +87,7 @@ const characterWalkLeftAnimation = {
   image: characterWalkLeftImage,
   sw: 64,
   sh: 64,
-  animationFrames: 4,
+  animationFrames: 6,
 };
 
 const characterDashLeftImage = new Image();
