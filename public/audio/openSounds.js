@@ -7,17 +7,57 @@ trackJumpSfx.connect(AudioCtx.destination);
 const dashSfx = document.querySelector('#dash-sfx');
 const trackdashSfx = AudioCtx.createMediaElementSource(dashSfx);
 trackdashSfx.connect(AudioCtx.destination);
-dashSfx.volume = 1;
+dashSfx.volume = 0.5;
 
-const enemyDeath = document.querySelector('#enemy-death-sfx');
-const trackenemyDeathSfx = AudioCtx.createMediaElementSource(enemyDeath);
-trackenemyDeathSfx.connect(AudioCtx.destination);
-enemyDeath.volume = 1;
+const enemyDeath1 = document.querySelector('#enemy-death-1-sfx');
+const trackenemyDeath1Sfx = AudioCtx.createMediaElementSource(enemyDeath1);
+trackenemyDeath1Sfx.connect(AudioCtx.destination);
+enemyDeath1.volume = 0.5;
+
+const enemyDeath2 = document.querySelector('#enemy-death-2-sfx');
+const trackenemyDeath2Sfx = AudioCtx.createMediaElementSource(enemyDeath2);
+trackenemyDeath2Sfx.connect(AudioCtx.destination);
+enemyDeath2.volume = 0.5;
+
+const enemyDeath3 = document.querySelector('#enemy-death-3-sfx');
+const trackenemyDeath3Sfx = AudioCtx.createMediaElementSource(enemyDeath3);
+trackenemyDeath3Sfx.connect(AudioCtx.destination);
+enemyDeath3.volume = 0.5;
+
+const enemyDeath4 = document.querySelector('#enemy-death-4-sfx');
+const trackenemyDeath4Sfx = AudioCtx.createMediaElementSource(enemyDeath4);
+trackenemyDeath4Sfx.connect(AudioCtx.destination);
+enemyDeath4.volume = 0.5;
+
+const enemyDeath5 = document.querySelector('#enemy-death-5-sfx');
+const trackenemyDeath5Sfx = AudioCtx.createMediaElementSource(enemyDeath5);
+trackenemyDeath5Sfx.connect(AudioCtx.destination);
+enemyDeath5.volume = 0.5;
+
+const enemyDeath6 = document.querySelector('#enemy-death-6-sfx');
+const trackenemyDeath6Sfx = AudioCtx.createMediaElementSource(enemyDeath6);
+trackenemyDeath6Sfx.connect(AudioCtx.destination);
+enemyDeath6.volume = 0.5;
+
+const enemyDeath7 = document.querySelector('#enemy-death-7-sfx');
+const trackenemyDeath7Sfx = AudioCtx.createMediaElementSource(enemyDeath7);
+trackenemyDeath7Sfx.connect(AudioCtx.destination);
+enemyDeath7.volume = 0.5;
+
+const enemyDeath = [
+  enemyDeath1,
+  enemyDeath2,
+  enemyDeath3,
+  enemyDeath4,
+  enemyDeath5,
+  enemyDeath6,
+  enemyDeath7,
+];
 
 const lossHealthSfx = document.querySelector('#loss-health-sfx');
 const tracklossHealthSfx = AudioCtx.createMediaElementSource(lossHealthSfx);
 tracklossHealthSfx.connect(AudioCtx.destination);
-lossHealthSfx.volume = 1;
+lossHealthSfx.volume = 0.5;
 
 const shroudMusic = document.querySelector('#shroud-music');
 const trackshroudMusic = AudioCtx.createMediaElementSource(shroudMusic);

@@ -6,7 +6,7 @@ import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
 import { enemyDeath, lossHealthSfx, shroudMusic } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
-import { partition } from './tools.js';
+import { partition, randomElement } from './tools.js';
 import { scoreOneKill } from './score.js';
 
 const resistanceConstant = 100 / 1000;
@@ -119,7 +119,7 @@ const applyDashDamage = (state) => {
   );
 
   if (enemiesHit.length > 0) {
-    playSfx(enemyDeath);
+    playSfx(randomElement(enemyDeath));
 
     const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
 
