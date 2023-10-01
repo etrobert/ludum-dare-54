@@ -128,13 +128,10 @@ const applyDashDamage = (state) => {
 
 const updateShroudVolume = (position, shroudRadius) => {
   const distToCenter = position.x * position.x + position.y * position.y;
-  console.log(distToCenter);
-  console.log(shroudRadius);
   const level = Math.min(
     Math.max((distToCenter / (shroudRadius * shroudRadius) - 0.5) * 2.5, 0),
     1
   );
-  console.log(level);
   shroudMusic.volume = level;
 };
 
