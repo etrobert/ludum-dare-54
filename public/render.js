@@ -7,11 +7,14 @@ ctx.imageSmoothingEnabled = false;
 
 const timePerFrame = 100; // ms
 
+const getCurrentFrame = (entity, time) =>
+  Math.floor((time - (entity.animationStart ?? 0)) / timePerFrame) %
+  entity.display.animationFrames;
+
 const drawDisplayableEntity = (entity, time, screenPos) => {
   ctx.drawImage(
     entity.display.image,
-    entity.display.sw *
-      (Math.floor(time / timePerFrame) % entity.display.animationFrames),
+    entity.display.sw * getCurrentFrame(entity, time),
     0,
     entity.display.sw,
     entity.display.sh,

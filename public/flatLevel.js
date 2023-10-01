@@ -15,6 +15,7 @@ const character = {
   acceleration: { x: 0, y: 0 },
   size,
   display: characterWalkRightAnimation,
+  animationStart: 0,
 };
 
 const flatLevel = {
