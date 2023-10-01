@@ -1,10 +1,7 @@
 import { addVectors, multiplyVector } from './vector.js';
 
-const entityCenter = (entity) =>
-  addVectors(entity.position, multiplyVector(0.5, entity.size));
-
 const distanceVector = (entity1, entity2) =>
-  addVectors(entityCenter(entity1), multiplyVector(-1, entityCenter(entity2)));
+  addVectors(entity1.position, multiplyVector(-1, entity2.position));
 
 const squaredDistance = (entity1, entity2) => {
   const vector = distanceVector(entity1, entity2);
@@ -24,10 +21,4 @@ const collisionRadius = (entity1, entity2) => {
   );
 };
 
-export {
-  entityCenter,
-  distanceVector,
-  squaredDistance,
-  collisionAABB,
-  collisionRadius,
-};
+export { distanceVector, squaredDistance, collisionAABB, collisionRadius };
