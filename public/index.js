@@ -30,8 +30,6 @@ const gameLoop = () => {
   state = updateState(state, timeDelta, currentTime);
 
   if (state.character.health === 0) {
-    state = flatLevel;
-    plotHealth(state.character.health);
     pause();
   }
 
@@ -66,6 +64,10 @@ const pause = () => {
 };
 
 const play = () => {
+  if (state.character.health === 0) {
+    state = flatLevel;
+    plotHealth(state.character.health);
+  }
   startGameLoop();
   startMenu.style.display = 'none';
   changeMusic([gameMusic, shroudMusic]);

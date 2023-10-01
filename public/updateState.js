@@ -78,7 +78,9 @@ const hitCharacter = (state, currentTime) => {
     character: {
       ...state.character,
       lastInvulnerability: currentTime,
+      lastHit: currentTime,
       health: newHealth,
+      // filter: 'brightness(1.75)',
     },
   });
 };

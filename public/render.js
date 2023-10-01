@@ -21,6 +21,9 @@ const getCurrentFrame = (entity, time) =>
   entity.display.animationFrames;
 
 const drawDisplayableEntity = (entity, time, screenPos) => {
+  ctx.save();
+  if (entity.lastHit && time - entity.lastHit < 100)
+    ctx.filter = 'brightness(1000%)';
   ctx.drawImage(
     entity.display.image,
     entity.display.sw * getCurrentFrame(entity, time),
@@ -32,6 +35,7 @@ const drawDisplayableEntity = (entity, time, screenPos) => {
     entity.size.x,
     entity.size.y
   );
+  ctx.restore();
 };
 
 const renderEntity = (entity, state, time) => {
