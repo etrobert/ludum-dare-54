@@ -6,7 +6,7 @@ import { spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
 
 const resistanceConstant = 100 / 1000;
-const minSpeed = 0.003;
+const minSpeed = 0.03;
 
 const updateSpeed = (entity, timeDelta) => {
   if (!entity.speed) return entity;
