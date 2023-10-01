@@ -243,7 +243,7 @@ const applyDashDamage = (state) => {
     (enemy) => !radiusCollision(enemy, state.character)
   );
   state.score = state.score + countEnemies - enemies.length;
-  document.getElementById('content').innerHTML = state.score;
+  document.getElementById('score').innerHTML = state.score;
   return { ...state, enemies };
 };
 
