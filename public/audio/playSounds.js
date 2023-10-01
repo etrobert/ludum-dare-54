@@ -26,6 +26,7 @@ const playSfx = (sfx) => {
     AudioCtx.resume();
   }
   sfx.cloneNode(true).play();
+  sfx.play();
 };
 
 export { changeMusic, playSfx };
