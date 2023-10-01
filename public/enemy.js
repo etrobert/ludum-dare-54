@@ -8,7 +8,7 @@ const enemy = {
   accelerationconstant: 1 / 10000,
   acceleration: { x: 0.0, y: 0 },
   //   acceleration: { x: 0.001, y: 0 },
-  size: { x: 64, y: 64 },
+  size: { x: 128, y: 128 },
   display: enemyIdleAnimation,
 };
 const createEnemy = (position) => ({ ...enemy, position });

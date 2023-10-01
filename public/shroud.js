@@ -1,9 +1,8 @@
 import { backgroundEntity } from './background.js';
 import { canvas, ctx } from './graphics.js';
 import { getScreenPos } from './screen-pos.js';
-import { multiplyVector } from './vector.js';
 
-const position = multiplyVector(0.5, backgroundEntity.size);
+const position = backgroundEntity.size;
 
 const startShroud = (state) => {
   const radius = state.shroudRadius;

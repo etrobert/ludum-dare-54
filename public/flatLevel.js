@@ -2,7 +2,7 @@ import { characterWalkRightAnimation } from './animations.js';
 import { backgroundEntity } from './background.js';
 import { addVectors, multiplyVector } from './vector.js';
 
-const size = { x: 64, y: 64 };
+const size = { x: 128, y: 128 };
 
 const character = {
   name: 'character',

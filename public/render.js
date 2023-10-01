@@ -1,4 +1,4 @@
-import { ctx, scale, canvas } from './graphics.js';
+import { ctx, canvas } from './graphics.js';
 import { startShroud, endShroud } from './shroud.js';
 import { getScreenPos } from './screen-pos.js';
 import { backgroundImage, backgroundEntity } from './background.js';
@@ -17,22 +17,15 @@ const drawDisplayableEntity = (entity, time, screenPos) => {
     entity.display.sh,
     screenPos.x,
     screenPos.y,
-    entity.size.x * scale,
-    entity.size.y * scale
+    entity.size.x,
+    entity.size.y
   );
 };
 
 const renderEntity = (entity, state, time) => {
   const screenPos = getScreenPos(entity, state.character);
-  if (entity.display) {
-    drawDisplayableEntity(entity, time, screenPos);
-  } else
-    ctx.fillRect(
-      screenPos.x,
-      screenPos.y,
-      entity.size.x * scale,
-      entity.size.y * scale
-    );
+  if (entity.display) drawDisplayableEntity(entity, time, screenPos);
+  else ctx.fillRect(screenPos.x, screenPos.y, entity.size.x, entity.size.y);
 };
 
 const render = (state, time) => {
