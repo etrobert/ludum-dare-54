@@ -33,11 +33,7 @@ const render = (state, time) => {
   startShroud(state);
 
   renderEntity(backgroundEntity, state, time);
-  drawDisplayableEntity(
-    state.character,
-    time,
-    getScreenPos(state.character, state.character)
-  );
+  renderEntity(state.character, state, time);
   ctx.fillStyle = 'green';
   state.obstacles.forEach((entity) => renderEntity(entity, state, time));
   state.enemies.forEach((entity) => renderEntity(entity, state, time));
