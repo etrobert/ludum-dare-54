@@ -12,37 +12,37 @@ dashSfx.volume = 0.5;
 const enemyDeath1 = document.querySelector('#enemy-death-1-sfx');
 const trackenemyDeath1Sfx = AudioCtx.createMediaElementSource(enemyDeath1);
 trackenemyDeath1Sfx.connect(AudioCtx.destination);
-enemyDeath1.volume = 0.5;
+enemyDeath1.volume = 0.3;
 
 const enemyDeath2 = document.querySelector('#enemy-death-2-sfx');
 const trackenemyDeath2Sfx = AudioCtx.createMediaElementSource(enemyDeath2);
 trackenemyDeath2Sfx.connect(AudioCtx.destination);
-enemyDeath2.volume = 0.5;
+enemyDeath2.volume = 0.3;
 
 const enemyDeath3 = document.querySelector('#enemy-death-3-sfx');
 const trackenemyDeath3Sfx = AudioCtx.createMediaElementSource(enemyDeath3);
 trackenemyDeath3Sfx.connect(AudioCtx.destination);
-enemyDeath3.volume = 0.5;
+enemyDeath3.volume = 0.3;
 
 const enemyDeath4 = document.querySelector('#enemy-death-4-sfx');
 const trackenemyDeath4Sfx = AudioCtx.createMediaElementSource(enemyDeath4);
 trackenemyDeath4Sfx.connect(AudioCtx.destination);
-enemyDeath4.volume = 0.5;
+enemyDeath4.volume = 0.3;
 
 const enemyDeath5 = document.querySelector('#enemy-death-5-sfx');
 const trackenemyDeath5Sfx = AudioCtx.createMediaElementSource(enemyDeath5);
 trackenemyDeath5Sfx.connect(AudioCtx.destination);
-enemyDeath5.volume = 0.5;
+enemyDeath5.volume = 0.3;
 
 const enemyDeath6 = document.querySelector('#enemy-death-6-sfx');
 const trackenemyDeath6Sfx = AudioCtx.createMediaElementSource(enemyDeath6);
 trackenemyDeath6Sfx.connect(AudioCtx.destination);
-enemyDeath6.volume = 0.5;
+enemyDeath6.volume = 0.3;
 
 const enemyDeath7 = document.querySelector('#enemy-death-7-sfx');
 const trackenemyDeath7Sfx = AudioCtx.createMediaElementSource(enemyDeath7);
 trackenemyDeath7Sfx.connect(AudioCtx.destination);
-enemyDeath7.volume = 0.5;
+enemyDeath7.volume = 0.3;
 
 const enemyDeath = [
   enemyDeath1,
@@ -57,7 +57,7 @@ const enemyDeath = [
 const lossHealthSfx = document.querySelector('#loss-health-sfx');
 const tracklossHealthSfx = AudioCtx.createMediaElementSource(lossHealthSfx);
 tracklossHealthSfx.connect(AudioCtx.destination);
-lossHealthSfx.volume = 0.5;
+lossHealthSfx.volume = 0.3;
 
 const shroudMusic = document.querySelector('#shroud-music');
 const trackshroudMusic = AudioCtx.createMediaElementSource(shroudMusic);
@@ -71,7 +71,7 @@ gameMusic.volume = 1;
 const startMusic = document.querySelector('#start-music');
 const startMusicTrack = AudioCtx.createMediaElementSource(startMusic);
 startMusicTrack.connect(AudioCtx.destination);
-startMusic.volume = 1;
+startMusic.volume = 0.6;
 
 export {
   AudioCtx,
