@@ -1,4 +1,4 @@
-import { enemyIdleAnimation } from './animations.js';
+import { enemyWalkRightAnimation } from './animations.js';
 
 const enemyAccelerationConstant = 4 / 10000;
 
@@ -9,7 +9,7 @@ const enemy = {
   speed: { x: 100 / 1000, y: 0 }, // px per ms
   acceleration: { x: 0.0, y: 0 },
   size: { x: 128, y: 128 },
-  display: enemyIdleAnimation,
+  display: enemyWalkRightAnimation,
 };
 const createEnemy = (position) => ({ ...enemy, position });
 
