@@ -50,18 +50,17 @@ const startGameLoop = () => {
   }
 };
 
-const menu = document.querySelector('menu');
-
+const startMenu = document.querySelector('#start-menu');
 const pause = () => {
   clearInterval(gameLoopInterval);
   gameLoopInterval = undefined;
-  menu.style.display = 'block';
+  startMenu.style.display = 'block';
   pauseMusic();
 };
 
 const play = () => {
   startGameLoop();
-  menu.style.display = 'none';
+  startMenu.style.display = 'none';
   playMusic();
 };
 
@@ -69,6 +68,10 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') pause();
 });
 
-menu.addEventListener('click', play);
+document.addEventListener('keydown', (event) => {
+  if (event.key === ' ') play();
+});
+
+// startMenu.addEventListener('click', play);
 
 // play(); // TODO: Remove autoplay
