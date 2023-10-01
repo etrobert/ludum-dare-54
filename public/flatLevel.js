@@ -12,10 +12,7 @@ const character = {
   hitBoxRadius: 10,
   dashing: false,
   lastDash: 0,
-  position: addVectors(
-    multiplyVector(0.5, backgroundEntity.size),
-    multiplyVector(-0.5, size)
-  ),
+  position: { x: 0, y: 0 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
   size,

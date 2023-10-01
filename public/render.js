@@ -32,15 +32,7 @@ const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // startShroud(state);
 
-  const backgroundScreenPosition = getScreenPos(
-    backgroundEntity,
-    state.character
-  );
-  ctx.drawImage(
-    backgroundImage,
-    backgroundScreenPosition.x,
-    backgroundScreenPosition.y
-  );
+  renderEntity(backgroundEntity, state, time);
   drawDisplayableEntity(
     state.character,
     time,
