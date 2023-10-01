@@ -26,7 +26,7 @@ const playSfx = (sfx) => {
   if (AudioCtx.state === 'suspended') {
     AudioCtx.resume();
   }
-  sfx.cloneNode(true).play();
+  // sfx.cloneNode(true).play();
   sfx.play();
 };
 
