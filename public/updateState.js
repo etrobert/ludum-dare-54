@@ -3,7 +3,7 @@ import {
   characterWalkLeftAnimation,
 } from './animations.js';
 import { plotHealth } from './plotHealth.js';
-import { entityCenter, distanceVector, squaredDistance } from './entity.js';
+import { distanceVector, squaredDistance } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
 import { spawnEnemy } from './enemy.js';
@@ -34,139 +34,21 @@ const updateSpeed = (entity, timeDelta) => {
   return { ...entity, speed };
 };
 
-const yCollidingEntities = (entity, otherEntities, timeDelta) => {
-  const newYPosition = {
-    x: entity.position.x,
-    y: entity.position.y + entity.speed.y * timeDelta,
-  };
-  const newEntity = {
-    ...entity,
-    position: newYPosition,
-  };
-
-  const collidingEntities = otherEntities.filter((otherEntity) =>
-    collision(otherEntity, newEntity)
-  );
-
-  return collidingEntities;
-};
-
-const updateYPosition = (entity, obstacles, timeDelta) => {
-  const collidingEntities = yCollidingEntities(entity, obstacles, timeDelta);
-
-  if (collidingEntities.length === 0)
-    return {
-      ...entity,
-      position: {
-        x: entity.position.x,
-        y: entity.position.y + entity.speed.y * timeDelta,
-      },
-    };
-
-  if (entity.speed.y > 0) {
-    const closestCollidingEntity = collidingEntities[0]; // TODO: min of position
-    return {
-      ...entity,
-      position: {
-        x: entity.position.x,
-        y: closestCollidingEntity.position.y - entity.size.x,
-      },
-      speed: {
-        x: entity.speed.x,
-        y: 0,
-      },
-    };
-  } else {
-    const closestCollidingEntity = collidingEntities[0]; // TODO
-    return {
-      ...entity,
-      position: {
-        x: entity.position.x,
-        y: closestCollidingEntity.position.y + closestCollidingEntity.size.y,
-      },
-      speed: {
-        x: entity.speed.x,
-        y: 0,
-      },
-    };
-  }
-};
-
-const xCollidingEntities = (entity, otherEntities, timeDelta) => {
-  const newXPosition = {
-    x: entity.position.x + entity.speed.x * timeDelta,
-    y: entity.position.y,
-  };
-  const newEntity = {
-    ...entity,
-    position: newXPosition,
-  };
-
-  const collidingEntities = otherEntities.filter((otherEntity) =>
-    collision(otherEntity, newEntity)
-  );
-
-  return collidingEntities;
-};
-
-const updateXPosition = (entity, obstacles, timeDelta) => {
-  const collidingEntities = xCollidingEntities(entity, obstacles, timeDelta);
-
-  if (collidingEntities.length === 0)
-    return {
-      ...entity,
-      position: {
-        x: entity.position.x + entity.speed.x * timeDelta,
-        y: entity.position.y,
-      },
-    };
-
-  if (entity.speed.x > 0) {
-    const closestCollidingEntity = collidingEntities[0]; // TODO: min of position
-    return {
-      ...entity,
-      position: {
-        x: closestCollidingEntity.position.x - entity.size.x,
-        y: entity.position.y,
-      },
-      speed: {
-        x: 0,
-        y: entity.speed.y,
-      },
-    };
-  } else {
-    const closestCollidingEntity = collidingEntities[0]; // TODO
-    return {
-      ...entity,
-      position: {
-        x: closestCollidingEntity.position.x + closestCollidingEntity.size.x,
-        y: entity.position.y,
-      },
-      speed: {
-        x: 0,
-        y: entity.speed.y,
-      },
-    };
-  }
-};
-
-const updatePosition = (entity, state, timeDelta) => {
+const updatePosition = (entity, collidables, timeDelta) => {
   if (!entity.speed) return entity;
-
-  const xUpdatedEntity = updateXPosition(entity, state.obstacles, timeDelta);
-  const yUpdatedEntity = updateYPosition(entity, state.obstacles, timeDelta);
-
-  return {
+  const futureEntity = {
     ...entity,
-    position: {
-      x: xUpdatedEntity.position.x,
-      y: yUpdatedEntity.position.y,
-    },
-    speed: {
-      x: xUpdatedEntity.speed.x,
-      y: yUpdatedEntity.speed.y,
-    },
+    position: addVectors(
+      entity.position,
+      multiplyVector(timeDelta, entity.speed)
+    ),
   };
+
+  const colliding = collidables.some((collidable) =>
+    collision(futureEntity, collidable)
+  );
+
+  return colliding ? entity : futureEntity;
 };
 
 const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
@@ -253,17 +135,21 @@ const spawnTimer = 2 * 1000;
 const updateState = (state, timeDelta, currentTime) => {
   state = resetDash(state, currentTime);
   state.character = updateSpeed(state.character, timeDelta);
-  state.character = updatePosition(state.character, state, timeDelta);
+  state.character = updatePosition(state.character, state.obstacles, timeDelta);
 
   if (state.character.speed.x < 0)
     state.character.display = characterWalkLeftAnimation;
   else if (state.character.speed.x > 0)
     state.character.display = characterWalkRightAnimation;
 
-  state.enemies = state.enemies.map((enemy) => {
+  state.enemies = state.enemies.map((enemy, index) => {
     enemy = updateEnemyAcceleration(enemy, state.character, timeDelta);
     enemy = updateSpeed(enemy, timeDelta);
-    return updatePosition(enemy, state, timeDelta);
+    const collidables = [
+      ...state.obstacles,
+      ...state.enemies.toSpliced(index, 1),
+    ];
+    return updatePosition(enemy, collidables, timeDelta);
   });
 
   state = state.character.dashing ? applyDashDamage(state) : state;

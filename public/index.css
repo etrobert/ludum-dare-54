@@ -26,6 +26,10 @@ li {
   list-style: none;
 }
 
+#score{
+  color:white; 
+}
+
 menu {
   position: absolute;
   color:white; 
