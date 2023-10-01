@@ -271,7 +271,7 @@ const updateState = (state, timeDelta, currentTime) => {
     currentTime - state.lastSpawn > spawnTimer
       ? spawnEnemy(state, currentTime)
       : state;
-  // state = updateShroud(state, timeDelta);
+  // state = updateShroud(state, timeDelta); // TODO: fixe crasg bug, add expension with enemies death
   return currentTime - state.character.lastInvulnerability < invulnerabilityTime
     ? state
     : applyEnemyDamage(state, currentTime);
