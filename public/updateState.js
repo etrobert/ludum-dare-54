@@ -121,6 +121,8 @@ const applyDashDamage = (state) => {
 
   state.score += enemiesHit.length;
 
+  state.shroudRadius += enemiesHit.length * 100;
+
   if (enemiesHit.length > 0) playSfx(enemyDeath);
   document.getElementById('score').innerHTML = state.score;
   return { ...state, enemies: enemiesNotHit };
@@ -162,7 +164,7 @@ const updateState = (state, timeDelta, currentTime) => {
     currentTime - state.lastSpawn > spawnTimer
       ? spawnEnemy(state, currentTime)
       : state;
-  // state = updateShroud(state, timeDelta); // TODO: fixe crasg bug, add expension with enemies death
+  state = updateShroud(state, timeDelta); // TODO: fixe crasg bug, add expension with enemies death
   return currentTime - state.character.lastInvulnerability < invulnerabilityTime
     ? state
     : applyEnemyDamage(state, currentTime);
