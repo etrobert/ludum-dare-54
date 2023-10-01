@@ -7,6 +7,7 @@ import updateCharacterAnimation from './updateCharacterAnimation.js';
 import { enemyDeath, lossHealthSfx, shroudMusic } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
 import { partition } from './tools.js';
+import { scoreOneKill } from './score.js';
 
 const resistanceConstant = 100 / 1000;
 const minSpeed = 0.03;
@@ -98,20 +99,18 @@ const applyEnemyDamage = (state, currentTime) => {
 };
 
 const resetDash = (state, currentTime) => {
-  if (
-    currentTime - state.character.lastDash > dashDuration &&
-    state.character.dashing
-  ) {
-    return {
-      ...state,
-      character: {
-        ...state.character,
-        dashing: false,
-        acceleration: { x: 0, y: 0 },
-      },
-    };
-  }
-  return state;
+  if (!state.character.dashing) return state;
+  if (currentTime - state.character.lastDash < dashDuration) return state;
+
+  return {
+    ...state,
+    character: {
+      ...state.character,
+      dashing: false,
+      dashHits: 0,
+      acceleration: { x: 0, y: 0 },
+    },
+  };
 };
 
 const applyDashDamage = (state) => {
@@ -119,12 +118,18 @@ const applyDashDamage = (state) => {
     radiusCollision(enemy, state.character)
   );
 
-  state.score += enemiesHit.length;
+  if (enemiesHit.length > 0) {
+    playSfx(enemyDeath);
 
-  state.shroudRadius += enemiesHit.length * 100;
+    const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
 
-  if (enemiesHit.length > 0) playSfx(enemyDeath);
-  document.getElementById('score').innerHTML = state.score;
+    state.shroudRadius += scoreIncrement * 100;
+    state.score += scoreIncrement;
+    document.getElementById('score').innerHTML = state.score;
+
+    state.character.dashHits += enemiesHit.length;
+  }
+
   return { ...state, enemies: enemiesNotHit };
 };
 

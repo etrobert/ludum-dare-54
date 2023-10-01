@@ -10,6 +10,7 @@ const character = {
   hitBoxRadius: 20,
   dashing: false,
   lastDash: 0,
+  dashHits: 0,
   position: { x: 0, y: 0 },
   speed: { x: 0, y: 0 }, // px per ms
   acceleration: { x: 0, y: 0 },
