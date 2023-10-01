@@ -37,7 +37,7 @@ const renderEntity = (entity, state, time) => {
 
 const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  startShroud(state);
+  // startShroud(state);
 
   const backgroundScreenPosition = getScreenPos(
     backgroundEntity,
@@ -57,7 +57,7 @@ const render = (state, time) => {
   state.obstacles.forEach((entity) => renderEntity(entity, state, time));
   state.enemies.forEach((entity) => renderEntity(entity, state, time));
 
-  endShroud();
+  // endShroud();
 };
 
 export default render;
