@@ -8,6 +8,7 @@ import { enemyDeath, lossHealthSfx, shroudMusic } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
 import { partition, randomElement } from './tools.js';
 import { scoreOneKill } from './score.js';
+import updateEnemyAnimation from './updateEnemyAnimation.js';
 
 const resistanceConstant = 100 / 1000;
 const minSpeed = 0.03;
@@ -156,6 +157,7 @@ const updateState = (state, timeDelta, currentTime) => {
   state.enemies = state.enemies.map((enemy, index) => {
     enemy = updateEnemyAcceleration(enemy, state.character, timeDelta);
     enemy = updateSpeed(enemy, timeDelta);
+    enemy = updateEnemyAnimation(enemy);
     const collidables = [
       ...state.obstacles,
       ...state.enemies.toSpliced(index, 1),
