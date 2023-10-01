@@ -1,20 +1,20 @@
 const audioCtx = new AudioContext();
-const backgroundMusic = document.querySelector('#game-music');
-const track = audioCtx.createMediaElementSource(backgroundMusic);
+const gameMusic = document.querySelector('#game-music');
+const track = audioCtx.createMediaElementSource(gameMusic);
 track.connect(audioCtx.destination);
 
 const playMusic = () => {
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
-  backgroundMusic.play();
+  gameMusic.play();
 };
 
 const pauseMusic = () => {
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
-  backgroundMusic.pause();
+  gameMusic.pause();
 };
 
 export { playMusic, pauseMusic };
