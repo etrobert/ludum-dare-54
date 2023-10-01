@@ -1,8 +1,12 @@
 const AudioCtx = new AudioContext();
 
-const jumpSound = document.querySelector('#jump-sound');
-const trackJumpTrack = AudioCtx.createMediaElementSource(jumpSound);
-trackJumpTrack.connect(AudioCtx.destination);
+const jumpSfx = document.querySelector('#jump-sfx');
+const trackJumpSfx = AudioCtx.createMediaElementSource(jumpSfx);
+trackJumpSfx.connect(AudioCtx.destination);
+
+const dashSfx = document.querySelector('#dash-sfx');
+const trackdashSfx = AudioCtx.createMediaElementSource(dashSfx);
+trackdashSfx.connect(AudioCtx.destination);
 
 const gameMusic = document.querySelector('#game-music');
 const gameMusicTrack = AudioCtx.createMediaElementSource(gameMusic);
@@ -12,4 +16,4 @@ const startMusic = document.querySelector('#start-music');
 const startMusicTrack = AudioCtx.createMediaElementSource(startMusic);
 startMusicTrack.connect(AudioCtx.destination);
 
-export { AudioCtx, jumpSound, gameMusic, startMusic };
+export { AudioCtx, jumpSfx, dashSfx, gameMusic, startMusic };

@@ -21,4 +21,11 @@ const changeMusic = (music) => {
   playMusic(music);
 };
 
-export { changeMusic };
+const playSfx = (sfx) => {
+  if (AudioCtx.state === 'suspended') {
+    AudioCtx.resume();
+  }
+  sfx.cloneNode(true).play();
+};
+
+export { changeMusic, playSfx };

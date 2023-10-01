@@ -4,7 +4,7 @@ import render from './render.js';
 import updateState from './updateState.js';
 import { spawnEnemy } from './enemy.js';
 import { gameMusic, startMusic } from './audio/openSounds.js';
-import { changeMusic } from './audio/music.js';
+import { changeMusic } from './audio/playSounds.js';
 import flatLevel from './flatLevel.js';
 import getUserAcceleration from './getUserAcceleration.js';
 
