@@ -4,6 +4,8 @@ import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
 import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
+import { enemyDeath } from './audio/openSounds.js';
+import { playSfx } from './audio/playSounds.js';
 
 const resistanceConstant = 100 / 1000;
 const minSpeed = 0.03;
@@ -115,7 +117,9 @@ const applyDashDamage = (state) => {
   const enemies = state.enemies.filter(
     (enemy) => !radiusCollision(enemy, state.character)
   );
-  state.score = state.score + countEnemies - enemies.length;
+  const countKills = countEnemies - enemies.length;
+  state.score = state.score + countKills;
+  if (countKills > 0) playSfx(enemyDeath);
   document.getElementById('score').innerHTML = state.score;
   return { ...state, enemies };
 };
