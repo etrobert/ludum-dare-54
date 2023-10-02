@@ -30,6 +30,7 @@ const flatLevel = {
   score: 0,
   startTime: 0,
   playing: false,
+  startPause: 0,
 };
 
 export default flatLevel;

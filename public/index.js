@@ -84,7 +84,7 @@ const pause = () => {
 };
 
 const play = () => {
-  if (!state.playing) {
+  if (!state.playing && Date.now() - state.startPause > 500) {
     if (state.character.health === 0) startGame();
     else resumeGame();
     startGameLoop();
