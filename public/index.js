@@ -11,12 +11,23 @@ let state;
 
 const startGame = () => {
   state = flatLevel;
+  state.character.health = 3;
   state.startTime = Date.now();
   plotMaxHealth(state.character.maxHealth);
   plotHealth(state.character.health);
 };
 
-startGame();
+const pauseGame = () => {
+  state.startPause = Date.now();
+};
+
+const resumeGame = () => {
+  state.startTime = state.startTime + (Date.now() - state.startPause);
+};
+
+// startGame();
+state = flatLevel;
+state.character.health = 0;
 
 let previousTime = Date.now();
 
@@ -64,6 +75,7 @@ const startGameLoop = () => {
 const startMenu = document.querySelector('#start-menu');
 
 const pause = () => {
+  pauseGame();
   clearInterval(gameLoopInterval);
   gameLoopInterval = undefined;
   startMenu.style.display = 'block';
@@ -72,6 +84,7 @@ const pause = () => {
 
 const play = () => {
   if (state.character.health === 0) startGame();
+  else resumeGame();
   startGameLoop();
   startMenu.style.display = 'none';
   changeMusic([gameMusic, shroudMusic]);
