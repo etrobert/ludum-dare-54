@@ -143,7 +143,7 @@ const applyDashDamage = (state, currentTime) => {
 
   const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
 
-  state.shroudRadius += enemiesHit.length * 100;
+  state.shroudRadius += enemiesHit.length * 80;
   state.score += scoreIncrement;
   document.getElementById('score').innerHTML = state.score;
 
@@ -152,7 +152,7 @@ const applyDashDamage = (state, currentTime) => {
     ...enemy,
     lastHit: currentTime,
   }));
-  const newPoolLight = state.character.specialPool + scoreIncrement;
+  const newPoolLight = state.character.specialPool + enemiesHit.length;
   plotLight(newPoolLight);
   return {
     ...state,
@@ -194,7 +194,7 @@ const applySpecialDamage = (state, currentTime) => {
 
   const scoreIncrement = scoreOneKill(state.character.specialHits + 1);
 
-  state.shroudRadius += minimumPool * 100;
+  state.shroudRadius += minimumPool * 80;
   state.score += scoreIncrement;
   document.getElementById('score').innerHTML = state.score;
 
