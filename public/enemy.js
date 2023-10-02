@@ -1,6 +1,10 @@
 import { enemyWalkRightAnimation } from './animations.js';
+import { addVectors } from './vector.js';
 
 const enemyAccelerationConstant = 3 / 10000;
+
+const diagScreen =
+  Math.sqrt(948 * 0.5 * 948 * 0.5 + 533 * 0.5 * 533 * 0.5) + 20;
 
 const enemy = {
   name: 'enemy',
@@ -18,10 +22,10 @@ const createEnemyOutScreen = (state) => {
   const teta = 2 * Math.PI * Math.random();
 
   const position = {
-    x: Math.cos(teta) * (state.shroudRadius + 50),
-    y: Math.sin(teta) * (state.shroudRadius + 50),
+    x: Math.cos(teta) * diagScreen,
+    y: Math.sin(teta) * diagScreen,
   };
-  return createEnemy(position);
+  return createEnemy(addVectors(position, state.character.position));
 };
 
 const spawnEnemy = (state, currentTime) => {
