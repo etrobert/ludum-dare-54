@@ -116,24 +116,32 @@ const resetDash = (state, currentTime) => {
   };
 };
 
-const applyDashDamage = (state) => {
+const applyDashDamage = (state, currentTime) => {
   const [enemiesHit, enemiesNotHit] = partition(state.enemies, (enemy) =>
     radiusCollision(enemy, state.character)
   );
 
-  if (enemiesHit.length > 0) {
-    playSfx(randomElement(enemyDeath));
+  if (enemiesHit.length === 0) return state;
 
-    const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
+  playSfx(randomElement(enemyDeath));
 
-    state.shroudRadius += scoreIncrement * 100;
-    state.score += scoreIncrement;
-    document.getElementById('score').innerHTML = state.score;
+  const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
 
-    state.character.dashHits += enemiesHit.length;
-  }
+  state.shroudRadius += scoreIncrement * 100;
+  state.score += scoreIncrement;
+  document.getElementById('score').innerHTML = state.score;
 
-  return { ...state, enemies: enemiesNotHit };
+  state.character.dashHits += enemiesHit.length;
+  const updatedEnemiesHit = enemiesHit.map((enemy) => ({
+    ...enemy,
+    lastHit: currentTime,
+  }));
+
+  return {
+    ...state,
+    enemies: enemiesNotHit,
+    dyingEntities: [...state.dyingEntities, ...updatedEnemiesHit],
+  };
 };
 
 const updateShroudVolume = (position, shroudRadius) => {
@@ -143,6 +151,10 @@ const updateShroudVolume = (position, shroudRadius) => {
     1
   );
   shroudMusic.volume = level;
+};
+
+const removeDeadEntites = (dyingEntites, currentTime) => {
+  return dyingEntites.filter((entity) => currentTime - entity.lastHit < 120);
 };
 
 const invulnerabilityTime = 1 * 1000;
@@ -166,8 +178,8 @@ const updateState = (state, timeDelta, currentTime) => {
     ];
     return updatePosition(enemy, collidables, timeDelta);
   });
-
-  state = state.character.dashing ? applyDashDamage(state) : state;
+  state.dyingEntities = removeDeadEntites(state.dyingEntities, currentTime);
+  state = state.character.dashing ? applyDashDamage(state, currentTime) : state;
 
   state =
     currentTime - state.lastSpawn > spawnTimer

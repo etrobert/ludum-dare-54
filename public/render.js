@@ -22,7 +22,7 @@ const getCurrentFrame = (entity, time) =>
 
 const drawDisplayableEntity = (entity, time, screenPos) => {
   ctx.save();
-  if (entity.lastHit && time - entity.lastHit < 100)
+  if (entity.lastHit && time - entity.lastHit < 150)
     ctx.filter = 'brightness(1000%)';
   ctx.drawImage(
     entity.display.image,
@@ -54,6 +54,7 @@ const render = (state, time) => {
     state.character,
     ...state.obstacles,
     ...state.enemies,
+    ...state.dyingEntities,
   ].forEach((entity) => renderEntity(entity, state, time));
 
   endShroud();

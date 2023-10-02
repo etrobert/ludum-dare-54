@@ -23,6 +23,7 @@ const character = {
 const flatLevel = {
   character,
   enemies: [],
+  dyingEntities: [],
   shroudRadius: 512,
   obstacles: [],
   lastSpawn: 0,

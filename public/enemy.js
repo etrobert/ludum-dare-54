@@ -10,6 +10,7 @@ const enemy = {
   acceleration: { x: 0.0, y: 0 },
   size: { x: 128, y: 128 },
   display: enemyWalkRightAnimation,
+  lastHit: 0,
 };
 const createEnemy = (position) => ({ ...enemy, position });
 
