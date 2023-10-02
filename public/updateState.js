@@ -141,7 +141,7 @@ const applyDashDamage = (state, currentTime) => {
 
   const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
 
-  state.shroudRadius += scoreIncrement * 100;
+  state.shroudRadius += enemiesHit.length * 100;
   state.score += scoreIncrement;
   document.getElementById('score').innerHTML = state.score;
 
@@ -153,6 +153,10 @@ const applyDashDamage = (state, currentTime) => {
 
   return {
     ...state,
+    character: {
+      ...state.character,
+      specialPool: state.character.specialPool + scoreIncrement,
+    },
     enemies: enemiesNotHit,
     dyingEntities: [...state.dyingEntities, ...updatedEnemiesHit],
   };

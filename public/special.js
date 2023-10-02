@@ -5,9 +5,10 @@ const specialCastingTime = 300;
 const specialRadius = 200;
 const lightSpecialMultiplier = 40 / 1000;
 const specialDuration = 0.5 * 1000;
+const minimumPool = 10;
 
 const special = (state, currentTime) => {
-  if (state.character.specialPool > 0) return state;
+  if (state.character.specialPool < minimumPool) return state;
   // playSfx(dashSfx);
   return {
     ...state,
@@ -16,6 +17,7 @@ const special = (state, currentTime) => {
       specialing: true,
       lastSpecial: currentTime,
       lastInvulnerability: currentTime,
+      specialPool: state.character.specialPool - minimumPool,
     },
   };
 };
