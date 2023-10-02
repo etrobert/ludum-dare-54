@@ -37,7 +37,7 @@ const updateSpeed = (entity, timeDelta) => {
 };
 
 const updatePosition = (entity, collidables, timeDelta) => {
-  if (!entity.speed) return entity;
+  if (!entity.speed || entity.specialing) return entity;
   const futureEntity = {
     ...entity,
     position: addVectors(
