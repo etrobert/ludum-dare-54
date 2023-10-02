@@ -121,7 +121,7 @@ const characterSpecialRightAnimation = {
   image: characterSpecialRightImage,
   sw: 64,
   sh: 64,
-  animationFrames: 12,
+  animationFrames: 10,
 };
 
 export {
