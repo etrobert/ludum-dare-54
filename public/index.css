@@ -36,7 +36,9 @@ li {
 
 #game {
   height: 533px;
+  width: 948px;
 }
+
 #start-menu{
   position: absolute;
 }
@@ -58,4 +60,14 @@ li {
 #empty-health-bar {
   --hearts: 3;
   background-image: url(assets/images/interface/heart-empty.png);
+}
+
+#light-score {
+  color:yellow;
+  position: relative; 
+  max-width: 60px;
+  left : 890px;
+  top : 100px;
+  font-size: 2rem;
+  font-family: 'Pixelify Sans', cursive;
 }

@@ -15,6 +15,7 @@ import { playSfx } from './audio/playSounds.js';
 import { partition, randomElement } from './tools.js';
 import { scoreOneKill } from './score.js';
 import updateEnemyAnimation from './updateEnemyAnimation.js';
+import plotLight from './plotLight.js';
 
 const resistanceConstant = 100 / 1000;
 const minSpeed = 0.03;
@@ -150,12 +151,13 @@ const applyDashDamage = (state, currentTime) => {
     ...enemy,
     lastHit: currentTime,
   }));
-
+  const newPoolLight = state.character.specialPool + scoreIncrement;
+  plotLight(newPoolLight);
   return {
     ...state,
     character: {
       ...state.character,
-      specialPool: state.character.specialPool + scoreIncrement,
+      specialPool: newPoolLight,
     },
     enemies: enemiesNotHit,
     dyingEntities: [...state.dyingEntities, ...updatedEnemiesHit],

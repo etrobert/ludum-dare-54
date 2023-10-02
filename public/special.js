@@ -1,5 +1,6 @@
 import { dashSfx } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
+import plotLight from './plotLight.js';
 
 const specialCastingTime = 300;
 const specialRadius = 200;
@@ -9,6 +10,8 @@ const minimumPool = 10;
 
 const special = (state, currentTime) => {
   if (state.character.specialPool < minimumPool) return state;
+  const newLightPool = state.character.specialPool - minimumPool;
+  plotLight(newLightPool);
   // playSfx(dashSfx);
   return {
     ...state,
@@ -17,7 +20,7 @@ const special = (state, currentTime) => {
       specialing: true,
       lastSpecial: currentTime,
       lastInvulnerability: currentTime,
-      specialPool: state.character.specialPool - minimumPool,
+      specialPool: newLightPool,
     },
   };
 };
