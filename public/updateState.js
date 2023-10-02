@@ -6,6 +6,7 @@ import {
   specialCastingTime,
   specialRadius,
   specialDuration,
+  specialDamageTime,
   minimumPool,
 } from './special.js';
 import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
@@ -213,6 +214,11 @@ const applySpecialDamage = (state, currentTime) => {
 const applySpecial = (state, currentTime) => {
   if (currentTime - state.character.lastSpecial < specialCastingTime)
     return state;
+  if (currentTime - state.character.lastSpecial < specialDamageTime)
+    return {
+      ...state,
+      character: { ...state.character, lastInvulnerability: currentTime },
+    };
   if (currentTime - state.character.lastSpecial > specialDuration) {
     return { ...state, character: { ...state.character, specialing: false } };
   }
