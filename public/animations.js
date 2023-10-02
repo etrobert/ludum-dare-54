@@ -113,6 +113,17 @@ const characterDashRightAnimation = {
   offset: { x: 64, y: 0 },
 };
 
+const characterSpecialRightImage = new Image();
+characterSpecialRightImage.src =
+  'assets/images/animations/character-special-right.png';
+
+const characterSpecialRightAnimation = {
+  image: characterSpecialRightImage,
+  sw: 64,
+  sh: 64,
+  animationFrames: 12,
+};
+
 export {
   jellyfishAnimation,
   jellyfishJumpAnimation,
@@ -125,4 +136,5 @@ export {
   characterWalkLeftAnimation,
   characterDashLeftAnimation,
   characterDashRightAnimation,
+  characterSpecialRightAnimation,
 };

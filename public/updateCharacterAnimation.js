@@ -4,6 +4,7 @@ import {
   characterDashLeftAnimation,
   characterDashRightAnimation,
   characterIdleRightAnimation,
+  characterSpecialRightAnimation,
 } from './animations.js';
 import getDirection from './getDirection.js';
 
@@ -20,6 +21,18 @@ const getCharacterAnimation = (character) => {
         direction === 'left'
           ? characterDashLeftAnimation
           : characterDashRightAnimation,
+    };
+  if (
+    character.speed.x === 0 &&
+    character.speed.y === 0 &&
+    character.specialing
+  )
+    return {
+      size: {
+        x: 128,
+        y: 128,
+      },
+      display: characterSpecialRightAnimation,
     };
 
   if (character.speed.x === 0 && character.speed.y === 0)
