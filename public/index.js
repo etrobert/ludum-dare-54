@@ -79,7 +79,6 @@ const startMenu = document.querySelector('#start-menu');
 
 const pause = () => {
   if (state.playing) {
-    console.log('yes');
     pauseGame();
     clearInterval(gameLoopInterval);
     gameLoopInterval = undefined;
@@ -89,7 +88,7 @@ const pause = () => {
 };
 
 const play = () => {
-  if (!state.playing && Date.now() - state.startPause > 500) {
+  if (!state.playing && Date.now() - state.startPause > 1000) {
     if (state.character.health === 0) startGame();
     else resumeGame();
     startGameLoop();
