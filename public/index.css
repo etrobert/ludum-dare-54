@@ -64,10 +64,10 @@ li {
 
 #light-score {
   color:yellow;
-  position: relative; 
+  position: absolute; 
   max-width: 60px;
-  left : 890px;
-  top : 100px;
+  left : 1050px;
+  top : 200px;
   font-size: 2rem;
   font-family: 'Pixelify Sans', cursive;
 }
