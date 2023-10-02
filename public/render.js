@@ -1,7 +1,9 @@
 import { ctx, canvas } from './graphics.js';
 import { startShroud, endShroud } from './shroud.js';
+import { rangeAB, combination } from './tools.js';
+import { multiplyVector2D } from './vector.js';
 import { getScreenPos } from './screen-pos.js';
-import { backgroundEntity } from './background.js';
+import { stoneTileSize, createStoneTileEntity } from './background.js';
 
 ctx.imageSmoothingEnabled = false;
 
@@ -44,13 +46,39 @@ const renderEntity = (entity, state, time) => {
   else ctx.fillRect(screenPos.x, screenPos.y, entity.size.x, entity.size.y);
 };
 
+const getBackgroundsEntities = (character) => {
+  const nMinX = Math.ceil(
+    (character.position.x - canvas.width * 0.5) / stoneTileSize.x - 0.5
+  );
+  const nMaxX = Math.ceil(
+    (character.position.x + canvas.width * 0.5) / stoneTileSize.x + 0.5
+  );
+  const rangeX = rangeAB(nMinX, nMaxX + 1);
+  const nMinY = Math.ceil(
+    (character.position.y - canvas.height * 0.5) / stoneTileSize.y - 0.5
+  );
+  const nMaxY = Math.ceil(
+    (character.position.y + canvas.height * 0.5) / stoneTileSize.y + 0.5
+  );
+  const rangeY = rangeAB(nMinY, nMaxY + 1);
+  const listPos = combination(rangeX, rangeY);
+  console.log(listPos);
+  const test = listPos
+    .map(([x, y]) => ({ x, y }))
+    .map((pos) => multiplyVector2D(stoneTileSize, pos));
+  console.log(test);
+  return listPos
+    .map(([x, y]) => ({ x, y }))
+    .map((pos) => multiplyVector2D(stoneTileSize, pos))
+    .map(createStoneTileEntity);
+};
+
 const render = (state, time) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   startShroud(state);
-
   ctx.fillStyle = 'green';
   [
-    backgroundEntity,
+    ...getBackgroundsEntities(state.character),
     state.character,
     ...state.obstacles,
     ...state.enemies,

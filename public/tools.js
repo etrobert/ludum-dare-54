@@ -4,6 +4,7 @@
  */
 const range = (n) => Array.from(Array(n).keys());
 
+const rangeAB = (a, b) => range(b - a - 1).map((k) => k + a);
 const combination = (a1, a2) => a1.flatMap((e1) => a2.map((e2) => [e1, e2]));
 
 /**
@@ -28,4 +29,12 @@ const randomInteger = (n) => Math.floor(Math.random() * n);
 
 const randomElement = (arr) => arr[randomInteger(arr.length)];
 
-export { range, combination, range2d, partition, randomInteger, randomElement };
+export {
+  range,
+  rangeAB,
+  combination,
+  range2d,
+  partition,
+  randomInteger,
+  randomElement,
+};

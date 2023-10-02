@@ -14,9 +14,14 @@ const multiplyVector = (num, vector) => ({
   y: vector.y * num,
 });
 
+const multiplyVector2D = (vector1, vector2) => ({
+  x: vector1.x * vector2.x,
+  y: vector1.y * vector2.y,
+});
+
 const normalizeVector = (vector) => {
   const d = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
   return { x: vector.x / d, y: vector.y / d };
 };
 
-export { addVectors, multiplyVector, normalizeVector };
+export { addVectors, multiplyVector, multiplyVector2D, normalizeVector };
