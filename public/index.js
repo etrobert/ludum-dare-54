@@ -19,10 +19,12 @@ const startGame = () => {
 };
 
 const pauseGame = () => {
-  (state.playing = false), (state.startPause = Date.now());
+  state.playing = false;
+  state.startPause = Date.now();
 };
 
 const resumeGame = () => {
+  state.playing = true;
   state.startTime = state.startTime + (Date.now() - state.startPause);
 };
 
@@ -76,11 +78,14 @@ const startGameLoop = () => {
 const startMenu = document.querySelector('#start-menu');
 
 const pause = () => {
-  pauseGame();
-  clearInterval(gameLoopInterval);
-  gameLoopInterval = undefined;
-  startMenu.style.display = 'block';
-  changeMusic([startMusic]);
+  if (state.playing) {
+    console.log('yes');
+    pauseGame();
+    clearInterval(gameLoopInterval);
+    gameLoopInterval = undefined;
+    startMenu.style.display = 'block';
+    changeMusic([startMusic]);
+  }
 };
 
 const play = () => {
