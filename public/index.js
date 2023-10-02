@@ -44,6 +44,12 @@ const gameLoop = () => {
     state = dash(state, currentTime);
   }
 
+  if (controls.requestSpecial) {
+    controls.requestSpecial = false;
+    console.log('special');
+    state = special(state, currentTime);
+  }
+
   if (!state.character.dashing)
     state.character.acceleration = getUserAcceleration(controls); // TODO: Preserve existing acceleration
 
@@ -63,6 +69,12 @@ document.addEventListener('keyup', (event) => (controls[event.key] = false));
 document.addEventListener('keydown', (event) => {
   if (event.key === ' ') {
     controls.requestDash = true;
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'c') {
+    controls.requestSpecial = true;
   }
 });
 
