@@ -67,7 +67,7 @@ const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
   };
 };
 
-const shroudShrinkSpeed = 1 / 100000;
+const shroudShrinkSpeed = 5 / 1000000;
 
 const updateShroud = (state, timeDelta, currentTime) => {
   return {
@@ -76,7 +76,7 @@ const updateShroud = (state, timeDelta, currentTime) => {
       state.shroudRadius -
         shroudShrinkSpeed *
           (currentTime - state.startTime) *
-          Math.log(state.shroudRadius / 1000 + 1) *
+          // Math.log(state.shroudRadius / 1000 + 1) *
           timeDelta,
       0
     ),
@@ -221,7 +221,7 @@ const applySpecial = (state, currentTime) => {
 };
 
 const invulnerabilityTime = 1 * 1000;
-const spawnTimer = 10000;
+const spawnTimer = 10000000;
 
 const updateState = (state, timeDelta, currentTime) => {
   updateShroudVolume(state.character.position, state.shroudRadius);
@@ -247,8 +247,7 @@ const updateState = (state, timeDelta, currentTime) => {
   state = state.character.specialing ? applySpecial(state, currentTime) : state;
 
   state =
-    currentTime - state.lastSpawn >
-    spawnTimer / Math.log(currentTime - state.startTime)
+    currentTime - state.lastSpawn > spawnTimer / (currentTime - state.startTime)
       ? spawnEnemy(state, currentTime)
       : state;
   state = updateShroud(state, timeDelta, currentTime); // TODO: fixe crasg bug, add expension with enemies death

@@ -1,6 +1,6 @@
 import { enemyWalkRightAnimation } from './animations.js';
 
-const enemyAccelerationConstant = 4 / 10000;
+const enemyAccelerationConstant = 3 / 10000;
 
 const enemy = {
   name: 'enemy',
