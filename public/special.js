@@ -4,7 +4,6 @@ import plotLight from './plotLight.js';
 
 const specialCastingTime = 500;
 const specialRadius = 200;
-const lightSpecialMultiplier = 40 / 1000;
 const specialDuration = 1200;
 const minimumPool = 10;
 
@@ -29,6 +28,6 @@ export {
   specialCastingTime,
   special,
   specialRadius,
-  lightSpecialMultiplier,
   specialDuration,
+  minimumPool,
 };

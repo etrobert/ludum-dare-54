@@ -5,8 +5,8 @@ import { dashDuration } from './dash.js';
 import {
   specialCastingTime,
   specialRadius,
-  lightSpecialMultiplier,
   specialDuration,
+  minimumPool,
 } from './special.js';
 import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
@@ -193,7 +193,7 @@ const applySpecialDamage = (state, currentTime) => {
 
   const scoreIncrement = scoreOneKill(state.character.specialHits + 1);
 
-  state.shroudRadius += scoreIncrement * 100;
+  state.shroudRadius += minimumPool * 100;
   state.score += scoreIncrement;
   document.getElementById('score').innerHTML = state.score;
 
