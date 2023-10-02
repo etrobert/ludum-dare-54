@@ -29,8 +29,8 @@ const getCharacterAnimation = (character) => {
   )
     return {
       size: {
-        x: 128,
-        y: 128,
+        x: 928 * 2,
+        y: 513 * 2,
       },
       display: characterSpecialRightAnimation,
     };
