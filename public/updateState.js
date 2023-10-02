@@ -140,7 +140,6 @@ const applyDashDamage = (state, currentTime) => {
   playSfx(randomElement(enemyDeath));
 
   const scoreIncrement = scoreOneKill(state.character.dashHits + 1);
-  state;
 
   state.shroudRadius += scoreIncrement * 100;
   state.score += scoreIncrement;
