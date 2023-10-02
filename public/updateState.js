@@ -2,6 +2,12 @@ import { plotHealth } from './plotHealth.js';
 import { distanceVector, squaredDistance, collisionRadius } from './entity.js';
 import { addVectors, multiplyVector, normalizeVector } from './vector.js';
 import { dashDuration } from './dash.js';
+import {
+  specialCastingTime,
+  specialRadius,
+  lightSpecialMultiplier,
+  specialDuration,
+} from './special.js';
 import { enemyAccelerationConstant, spawnEnemy } from './enemy.js';
 import updateCharacterAnimation from './updateCharacterAnimation.js';
 import { enemyDeath, lossHealthSfx, shroudMusic } from './audio/openSounds.js';
@@ -165,6 +171,15 @@ const removeDeadEntites = (dyingEntites, currentTime) => {
   return dyingEntites.filter((entity) => currentTime - entity.lastHit < 120);
 };
 
+const applySpecial = (state, currentTime) => {
+  if (currentTime - state.character.lastSpecial < specialCastingTime)
+    return state;
+  if (currentTime - state.character.lastSpecial > specialDuration) {
+    return { ...state, character: { ...state.character, specialing: false } };
+  }
+  return state;
+};
+
 const invulnerabilityTime = 1 * 1000;
 const spawnTimer = 10000;
 
@@ -186,8 +201,11 @@ const updateState = (state, timeDelta, currentTime) => {
     ];
     return updatePosition(enemy, collidables, timeDelta);
   });
+
   state.dyingEntities = removeDeadEntites(state.dyingEntities, currentTime);
   state = state.character.dashing ? applyDashDamage(state, currentTime) : state;
+  state = state.character.specialing ? applySpecial(state, currentTime) : state;
+
   state =
     currentTime - state.lastSpawn >
     spawnTimer / Math.log(currentTime - state.startTime)

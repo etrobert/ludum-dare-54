@@ -1,5 +1,6 @@
 import { plotHealth, plotMaxHealth } from './plotHealth.js';
 import { dash } from './dash.js';
+import { special } from './special.js';
 import render from './render.js';
 import updateState from './updateState.js';
 import { gameMusic, shroudMusic, startMusic } from './audio/openSounds.js';

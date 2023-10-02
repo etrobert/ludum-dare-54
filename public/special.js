@@ -1,6 +1,7 @@
 import { dashSfx } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
 
+const specialCastingTime = 300;
 const specialRadius = 200;
 const lightSpecialMultiplier = 40 / 1000;
 const specialDuration = 0.5 * 1000;
@@ -19,4 +20,10 @@ const special = (state, currentTime) => {
   };
 };
 
-export { special, specialRadius, lightSpecialMultiplier, specialDuration };
+export {
+  specialCastingTime,
+  special,
+  specialRadius,
+  lightSpecialMultiplier,
+  specialDuration,
+};
