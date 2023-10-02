@@ -60,11 +60,15 @@ const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
   };
 };
 
-const shroudShrinkSpeed = 50 / 1000;
+const shroudShrinkSpeed = 1 / 100000;
 
-const updateShroud = (state, timeDelta) => ({
+const updateShroud = (state, timeDelta, currentTime) => ({
   ...state,
-  shroudRadius: Math.max(state.shroudRadius - shroudShrinkSpeed * timeDelta, 0),
+  shroudRadius: Math.max(
+    state.shroudRadius -
+      shroudShrinkSpeed * (currentTime - state.startTime) * timeDelta,
+    0
+  ),
 });
 
 const damage = 1;
@@ -185,7 +189,7 @@ const updateState = (state, timeDelta, currentTime) => {
     spawnTimer / Math.log(currentTime - state.startTime)
       ? spawnEnemy(state, currentTime)
       : state;
-  state = updateShroud(state, timeDelta); // TODO: fixe crasg bug, add expension with enemies death
+  state = updateShroud(state, timeDelta, currentTime); // TODO: fixe crasg bug, add expension with enemies death
   return currentTime - state.character.lastInvulnerability < invulnerabilityTime
     ? state
     : applyEnemyDamage(state, currentTime);
