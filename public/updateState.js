@@ -171,13 +171,48 @@ const removeDeadEntites = (dyingEntites, currentTime) => {
   return dyingEntites.filter((entity) => currentTime - entity.lastHit < 120);
 };
 
+const inSpecialRadius = (entity, character) => {
+  const d2 = squaredDistance(entity, character);
+  return d2 < specialRadius * specialRadius;
+};
+
+const applySpecialDamage = (state, currentTime) => {
+  const [enemiesHit, enemiesNotHit] = partition(state.enemies, (enemy) =>
+    inSpecialRadius(enemy, state.character)
+  );
+
+  if (enemiesHit.length === 0) return state;
+
+  playSfx(randomElement(enemyDeath));
+
+  const scoreIncrement = scoreOneKill(state.character.specialHits + 1);
+
+  state.shroudRadius += scoreIncrement * 100;
+  state.score += scoreIncrement;
+  document.getElementById('score').innerHTML = state.score;
+
+  state.character.dashHits += enemiesHit.length;
+  const updatedEnemiesHit = enemiesHit.map((enemy) => ({
+    ...enemy,
+    lastHit: currentTime,
+  }));
+
+  return {
+    ...state,
+    enemies: enemiesNotHit,
+    dyingEntities: [...state.dyingEntities, ...updatedEnemiesHit],
+  };
+};
+
 const applySpecial = (state, currentTime) => {
+  console.log('test');
   if (currentTime - state.character.lastSpecial < specialCastingTime)
     return state;
   if (currentTime - state.character.lastSpecial > specialDuration) {
     return { ...state, character: { ...state.character, specialing: false } };
   }
-  return state;
+  state = applySpecialDamage(state, currentTime);
+  return { ...state, character: { ...state.character, specialPool: 0 } };
 };
 
 const invulnerabilityTime = 1 * 1000;
