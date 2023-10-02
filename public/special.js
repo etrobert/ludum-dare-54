@@ -5,7 +5,7 @@ import plotLight from './plotLight.js';
 const specialCastingTime = 500;
 const specialRadius = 200;
 const lightSpecialMultiplier = 40 / 1000;
-const specialDuration = 1.2;
+const specialDuration = 1200;
 const minimumPool = 10;
 
 const special = (state, currentTime) => {

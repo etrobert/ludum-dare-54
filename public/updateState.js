@@ -95,7 +95,7 @@ const hitCharacter = (state, currentTime) => {
       ...state.character,
       lastInvulnerability: currentTime,
       lastHit: currentTime,
-      // health: newHealth,
+      health: newHealth,
     },
   });
 };
@@ -211,7 +211,6 @@ const applySpecialDamage = (state, currentTime) => {
 };
 
 const applySpecial = (state, currentTime) => {
-  console.log('test');
   if (currentTime - state.character.lastSpecial < specialCastingTime)
     return state;
   if (currentTime - state.character.lastSpecial > specialDuration) {
