@@ -1,4 +1,4 @@
-import { dashSfx } from './audio/openSounds.js';
+import { specialSfx } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
 import plotLight from './plotLight.js';
 
@@ -12,7 +12,7 @@ const special = (state, currentTime) => {
   if (state.character.specialPool < minimumPool) return state;
   const newLightPool = state.character.specialPool - minimumPool;
   plotLight(newLightPool);
-  // playSfx(dashSfx);
+  playSfx(specialSfx);
   return {
     ...state,
     character: {
