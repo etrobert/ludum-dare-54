@@ -63,7 +63,6 @@ const updateEnemyAcceleration = (enemy, characterPos, timeDelta) => {
 const shroudShrinkSpeed = 1 / 100000;
 
 const updateShroud = (state, timeDelta, currentTime) => {
-  console.log(currentTime - state.startTime);
   return {
     ...state,
     shroudRadius: Math.max(
