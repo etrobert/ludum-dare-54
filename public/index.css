@@ -28,8 +28,8 @@ li {
 #score{
   color:white; 
   position: absolute;
-  right: 290px;
-  top: 430px;
+  right: 620px;
+  top: 480px;
   font-size: 4rem;
   font-family: 'Pixelify Sans', cursive;
   display:none;
@@ -77,8 +77,8 @@ li {
   color:yellow;
   position: absolute; 
   max-width: 60px;
-  left : 1050px;
-  top : 200px;
-  font-size: 2rem;
+  left : 1000px;
+  top : 400px;
+  font-size: 1.5rem;
   font-family: 'Pixelify Sans', cursive;
 }
