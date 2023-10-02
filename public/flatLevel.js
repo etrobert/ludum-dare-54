@@ -29,6 +29,7 @@ const flatLevel = {
   lastSpawn: 0,
   score: 0,
   startTime: 0,
+  playing: false,
 };
 
 export default flatLevel;

@@ -11,6 +11,7 @@ let state;
 
 const startGame = () => {
   state = flatLevel;
+  state.playing = true;
   state.character.health = 3;
   state.startTime = Date.now();
   plotMaxHealth(state.character.maxHealth);
@@ -18,7 +19,7 @@ const startGame = () => {
 };
 
 const pauseGame = () => {
-  state.startPause = Date.now();
+  (state.playing = false), (state.startPause = Date.now());
 };
 
 const resumeGame = () => {
@@ -83,11 +84,13 @@ const pause = () => {
 };
 
 const play = () => {
-  if (state.character.health === 0) startGame();
-  else resumeGame();
-  startGameLoop();
-  startMenu.style.display = 'none';
-  changeMusic([gameMusic, shroudMusic]);
+  if (!state.playing) {
+    if (state.character.health === 0) startGame();
+    else resumeGame();
+    startGameLoop();
+    startMenu.style.display = 'none';
+    changeMusic([gameMusic, shroudMusic]);
+  }
 };
 
 document.addEventListener('keydown', (event) => {
