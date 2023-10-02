@@ -66,7 +66,10 @@ const updateShroud = (state, timeDelta, currentTime) => ({
   ...state,
   shroudRadius: Math.max(
     state.shroudRadius -
-      shroudShrinkSpeed * (currentTime - state.startTime) * timeDelta,
+      shroudShrinkSpeed *
+        (currentTime - state.startTime) *
+        Math.log(state.shroudRadius / 1000 + 1) *
+        timeDelta,
     0
   ),
 });
@@ -83,7 +86,7 @@ const hitCharacter = (state, currentTime) => {
       ...state.character,
       lastInvulnerability: currentTime,
       lastHit: currentTime,
-      health: newHealth,
+      // health: newHealth,
       // filter: 'brightness(1.75)',
     },
   });
