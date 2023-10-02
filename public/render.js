@@ -62,11 +62,6 @@ const getBackgroundsEntities = (character) => {
   );
   const rangeY = rangeAB(nMinY, nMaxY + 1);
   const listPos = combination(rangeX, rangeY);
-  console.log(listPos);
-  const test = listPos
-    .map(([x, y]) => ({ x, y }))
-    .map((pos) => multiplyVector2D(stoneTileSize, pos));
-  console.log(test);
   return listPos
     .map(([x, y]) => ({ x, y }))
     .map((pos) => multiplyVector2D(stoneTileSize, pos))

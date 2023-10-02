@@ -1,16 +1,22 @@
 import { plotHealth, plotMaxHealth } from './plotHealth.js';
-import { dash, dashCooldown } from './dash.js';
+import { dash } from './dash.js';
 import render from './render.js';
 import updateState from './updateState.js';
-import { spawnEnemy } from './enemy.js';
 import { gameMusic, shroudMusic, startMusic } from './audio/openSounds.js';
 import { changeMusic } from './audio/playSounds.js';
 import flatLevel from './flatLevel.js';
 import getUserAcceleration from './getUserAcceleration.js';
 
-let state = flatLevel;
-plotHealth(state.character.health);
-plotMaxHealth(state.character.maxHealth);
+let state;
+
+const startGame = () => {
+  state = flatLevel;
+  state.startTime = Date.now();
+  plotMaxHealth(state.character.maxHealth);
+  plotHealth(state.character.health);
+};
+
+startGame();
 
 let previousTime = Date.now();
 
@@ -56,6 +62,7 @@ const startGameLoop = () => {
 };
 
 const startMenu = document.querySelector('#start-menu');
+
 const pause = () => {
   clearInterval(gameLoopInterval);
   gameLoopInterval = undefined;
@@ -64,10 +71,7 @@ const pause = () => {
 };
 
 const play = () => {
-  if (state.character.health === 0) {
-    state = flatLevel;
-    plotHealth(state.character.health);
-  }
+  if (state.character.health === 0) startGame();
   startGameLoop();
   startMenu.style.display = 'none';
   changeMusic([gameMusic, shroudMusic]);

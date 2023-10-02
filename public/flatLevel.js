@@ -28,6 +28,7 @@ const flatLevel = {
   obstacles: [],
   lastSpawn: 0,
   score: 0,
+  startTime: 0,
 };
 
 export default flatLevel;

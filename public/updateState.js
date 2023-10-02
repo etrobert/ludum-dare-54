@@ -158,7 +158,7 @@ const removeDeadEntites = (dyingEntites, currentTime) => {
 };
 
 const invulnerabilityTime = 1 * 1000;
-const spawnTimer = 2 * 1000;
+const spawnTimer = 10000;
 
 const updateState = (state, timeDelta, currentTime) => {
   updateShroudVolume(state.character.position, state.shroudRadius);
@@ -180,9 +180,9 @@ const updateState = (state, timeDelta, currentTime) => {
   });
   state.dyingEntities = removeDeadEntites(state.dyingEntities, currentTime);
   state = state.character.dashing ? applyDashDamage(state, currentTime) : state;
-
   state =
-    currentTime - state.lastSpawn > spawnTimer
+    currentTime - state.lastSpawn >
+    spawnTimer / Math.log(currentTime - state.startTime)
       ? spawnEnemy(state, currentTime)
       : state;
   state = updateShroud(state, timeDelta); // TODO: fixe crasg bug, add expension with enemies death
