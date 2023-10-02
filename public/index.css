@@ -28,10 +28,11 @@ li {
 #score{
   color:white; 
   position: absolute;
-  right: 450px;
-  top: 250px;
-  font-size: 3rem;
+  right: 290px;
+  top: 430px;
+  font-size: 4rem;
   font-family: 'Pixelify Sans', cursive;
+  display:none;
 }
 
 #game {

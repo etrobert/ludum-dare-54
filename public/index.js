@@ -91,6 +91,7 @@ const startGameLoop = () => {
 const startMenu = document.querySelector('#start-menu');
 const pauseMenu = document.querySelector('#pause-menu');
 const deathMenu = document.querySelector('#death-menu');
+const score = document.querySelector('#score');
 
 const pause = () => {
   if (state.playing) {
@@ -98,6 +99,7 @@ const pause = () => {
     clearInterval(gameLoopInterval);
     gameLoopInterval = undefined;
     pauseMenu.style.display = 'block';
+    score.style.display = 'block';
     changeMusic([startMusic]);
   }
 };
@@ -108,6 +110,7 @@ const death = () => {
     clearInterval(gameLoopInterval);
     gameLoopInterval = undefined;
     deathMenu.style.display = 'block';
+    score.style.display = 'block';
     changeMusic([startMusic]);
   }
 };
@@ -120,6 +123,7 @@ const play = () => {
     startMenu.style.display = 'none';
     pauseMenu.style.display = 'none';
     deathMenu.style.display = 'none';
+    score.style.display = 'none';
     changeMusic([gameMusic, shroudMusic]);
   }
 };
