@@ -57,7 +57,7 @@ const gameLoop = () => {
   state = updateState(state, timeDelta, currentTime);
 
   if (state.character.health === 0) {
-    pause();
+    death();
   }
 
   render(state, currentTime);
@@ -89,13 +89,25 @@ const startGameLoop = () => {
 };
 
 const startMenu = document.querySelector('#start-menu');
+const pauseMenu = document.querySelector('#pause-menu');
+const deathMenu = document.querySelector('#death-menu');
 
 const pause = () => {
   if (state.playing) {
     pauseGame();
     clearInterval(gameLoopInterval);
     gameLoopInterval = undefined;
-    startMenu.style.display = 'block';
+    pauseMenu.style.display = 'block';
+    changeMusic([startMusic]);
+  }
+};
+
+const death = () => {
+  if (state.playing) {
+    pauseGame();
+    clearInterval(gameLoopInterval);
+    gameLoopInterval = undefined;
+    deathMenu.style.display = 'block';
     changeMusic([startMusic]);
   }
 };
@@ -106,6 +118,8 @@ const play = () => {
     else resumeGame();
     startGameLoop();
     startMenu.style.display = 'none';
+    pauseMenu.style.display = 'none';
+    deathMenu.style.display = 'none';
     changeMusic([gameMusic, shroudMusic]);
   }
 };

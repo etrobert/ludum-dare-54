@@ -28,8 +28,8 @@ li {
 #score{
   color:white; 
   position: absolute;
-  right: 130px;
-  top: 200px;
+  right: 450px;
+  top: 250px;
   font-size: 3rem;
   font-family: 'Pixelify Sans', cursive;
 }
@@ -41,6 +41,16 @@ li {
 
 #start-menu{
   position: absolute;
+}
+
+#pause-menu{
+  position: absolute;
+  display:none;
+}
+
+#death-menu{
+  position: absolute;
+  display:none;
 }
 
 .health-bar {
