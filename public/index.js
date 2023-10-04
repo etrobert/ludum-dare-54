@@ -7,6 +7,7 @@ import { gameMusic, shroudMusic, startMusic } from './audio/openSounds.js';
 import { changeMusic } from './audio/playSounds.js';
 import flatLevel from './flatLevel.js';
 import getUserAcceleration from './getUserAcceleration.js';
+import { plotLight, plotFinalScore } from './plotScores.js';
 
 let state;
 
@@ -17,6 +18,8 @@ const startGame = () => {
   state.startTime = Date.now();
   plotMaxHealth(state.character.maxHealth);
   plotHealth(state.character.health);
+  plotLight(0);
+  plotFinalScore(0);
 };
 
 const pauseGame = () => {

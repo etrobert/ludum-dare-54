@@ -1,6 +1,6 @@
 import { specialSfx } from './audio/openSounds.js';
 import { playSfx } from './audio/playSounds.js';
-import plotLight from './plotLight.js';
+import { plotLight } from './plotScores.js';
 
 const specialCastingTime = 1000;
 const specialDamageTime = 500;

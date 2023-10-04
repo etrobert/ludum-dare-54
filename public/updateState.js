@@ -16,7 +16,7 @@ import { playSfx } from './audio/playSounds.js';
 import { partition, randomElement } from './tools.js';
 import { scoreOneKill } from './score.js';
 import updateEnemyAnimation from './updateEnemyAnimation.js';
-import plotLight from './plotLight.js';
+import { plotLight, plotFinalScore } from './plotScores.js';
 
 const resistanceConstant = 100 / 1000;
 const minSpeed = 0.03;
@@ -145,7 +145,7 @@ const applyDashDamage = (state, currentTime) => {
 
   state.shroudRadius += enemiesHit.length * 80;
   state.score += scoreIncrement;
-  document.getElementById('final-score').innerHTML = state.score;
+  plotFinalScore(state.score);
 
   state.character.dashHits += enemiesHit.length;
   const updatedEnemiesHit = enemiesHit.map((enemy) => ({
@@ -196,7 +196,7 @@ const applySpecialDamage = (state, currentTime) => {
 
   state.shroudRadius += minimumPool * 80;
   state.score += scoreIncrement;
-  document.getElementById('final-score').innerHTML = state.score;
+  plotFinalScore(state.score);
 
   state.character.dashHits += enemiesHit.length;
   const updatedEnemiesHit = enemiesHit.map((enemy) => ({
