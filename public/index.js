@@ -91,7 +91,7 @@ const startGameLoop = () => {
 const startMenu = document.querySelector('#start-menu');
 const pauseMenu = document.querySelector('#pause-menu');
 const deathMenu = document.querySelector('#death-menu');
-const score = document.querySelector('#score');
+const score = document.querySelector('#final-score');
 
 const pause = () => {
   if (state.playing) {

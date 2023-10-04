@@ -145,7 +145,7 @@ const applyDashDamage = (state, currentTime) => {
 
   state.shroudRadius += enemiesHit.length * 80;
   state.score += scoreIncrement;
-  document.getElementById('score').innerHTML = state.score;
+  document.getElementById('final-score').innerHTML = state.score;
 
   state.character.dashHits += enemiesHit.length;
   const updatedEnemiesHit = enemiesHit.map((enemy) => ({
@@ -196,7 +196,7 @@ const applySpecialDamage = (state, currentTime) => {
 
   state.shroudRadius += minimumPool * 80;
   state.score += scoreIncrement;
-  document.getElementById('score').innerHTML = state.score;
+  document.getElementById('final-score').innerHTML = state.score;
 
   state.character.dashHits += enemiesHit.length;
   const updatedEnemiesHit = enemiesHit.map((enemy) => ({

@@ -7,51 +7,72 @@ body {
   display: grid;
   place-items: center;
   background-color: black;
-}
-
-body,
-button {
   margin: 0;
   padding: 0;
 }
 
-button {
-  font-size: 1.5em;
-  border-radius: 1rem;
-  padding: 1rem 2rem;
+#display{
+  position: relative;
+  height: 533px;
+  width: 948px;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%,-50%); */
 }
 
-li {
-  list-style: none;
-}
-
-#score{
-  color:white; 
-  position: absolute;
-  right: 620px;
-  top: 480px;
-  font-size: 4rem;
-  font-family: 'Pixelify Sans', cursive;
-  display:none;
-}
 
 #game {
+  position: absolute;
+  /* transform: translate(-50%,-50%); */
   height: 533px;
   width: 948px;
 }
 
-#start-menu{
+.menu{
   position: absolute;
+  /* transform: translate(-50%,-50%); */
+  height: 533px;
+  width: 948px;
 }
 
 #pause-menu{
-  position: absolute;
   display:none;
 }
 
 #death-menu{
-  position: absolute;
   display:none;
+}
+
+/* #score{
+  color:white; 
+  font-size: 4rem;
+  font-family: 'Pixelify Sans', cursive;
+  display:none;
+  position: absolute;
+  bottom: 100;
+  transform: translate(-50%,-50%);
+} */
+
+.score{
+  position: absolute; 
+  font-family: 'Pixelify Sans', cursive;
+  transform: translate(-50%,-50%);
+}
+
+#final-score{
+  color:white;
+  font-size: 4rem;
+  top: 58%;
+  left: 83.5%;
+  z-index: 2;
+  display:none;
+}
+
+#light-score {
+  color:yellow;
+  top: 40%;
+  left: 53%;
+  font-size: 1.5rem;
 }
 
 .health-bar {
@@ -71,14 +92,4 @@ li {
 #empty-health-bar {
   --hearts: 3;
   background-image: url(assets/images/interface/heart-empty.png);
-}
-
-#light-score {
-  color:yellow;
-  position: absolute; 
-  max-width: 60px;
-  left : 1000px;
-  top : 400px;
-  font-size: 1.5rem;
-  font-family: 'Pixelify Sans', cursive;
 }

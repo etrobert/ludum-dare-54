@@ -25,8 +25,10 @@
     <audio id="loss-health-sfx" src="assets/audio/sfx/loss-health-sfx.mp3"></audio>
     <audio id="special-sfx" src="assets/audio/sfx/special-sfx.mp3"></audio>
     <audio id="shroud-music" src="assets/audio/sfx/shroud-music.mp3"></audio>
+    <div id="display" >
+    <div class="score" id="final-score">0</div>
     <div id="game" >
-      <div id="light-score"> 0 </div>
+      <div class="score" id="light-score"> 0 </div>
       <div class="health-bar" id="empty-health-bar"></div>
       <div class="health-bar" id="filled-health-bar"></div>
       <canvas width="948" height="533">
@@ -34,15 +36,15 @@
         <!-- An alternative text describing what your canvas displays. -->
       </canvas>
     </div>
-    <div id="start-menu" >
+    <div class="menu" id="start-menu" >
     <img src="assets/images/interface/title-screen.png" alt="">
     </div>
-    <div id="pause-menu" >
+    <div class="menu" id="pause-menu" >
     <img src="assets/images/interface/pause-screen.png" alt="">
     </div>
-    <div id="death-menu" >
+    <div class="menu" id="death-menu" >
     <img src="assets/images/interface/death-screen.png" alt="">
     </div>
-    <div id="score">0</div>
+  </div>
   </body>
 </html>
