@@ -68,7 +68,10 @@ const gameLoop = () => {
 
 let controls = {};
 
-document.addEventListener('keydown', (event) => (controls[event.key] = true));
+document.addEventListener('keydown', (event) => {
+  event.preventDefault();
+  controls[event.key] = true;
+});
 document.addEventListener('keyup', (event) => (controls[event.key] = false));
 document.addEventListener('keydown', (event) => {
   if (event.key === ' ') {
