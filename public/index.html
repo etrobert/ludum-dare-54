@@ -6,45 +6,72 @@
     <title>Web Game Engine</title>
     <script type="module" src="index.js"></script>
     <link rel="stylesheet" href="index.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <audio id="game-music" src="assets/audio/music/game-music.mp3"></audio>
     <audio id="start-music" src="assets/audio/music/start-music.mp3"></audio>
     <audio id="jump-sfx" src="assets/audio/sfx/jump-sfx.mp3"></audio>
     <audio id="dash-sfx" src="assets/audio/sfx/dash-sfx.mp3"></audio>
-    <audio id="enemy-death-1-sfx" src="assets/audio/sfx/enemy-death-1-sfx.mp3"></audio>
-    <audio id="enemy-death-2-sfx" src="assets/audio/sfx/enemy-death-2-sfx.mp3"></audio>
-    <audio id="enemy-death-3-sfx" src="assets/audio/sfx/enemy-death-3-sfx.mp3"></audio>
-    <audio id="enemy-death-4-sfx" src="assets/audio/sfx/enemy-death-4-sfx.mp3"></audio>
-    <audio id="enemy-death-5-sfx" src="assets/audio/sfx/enemy-death-5-sfx.mp3"></audio>
-    <audio id="enemy-death-6-sfx" src="assets/audio/sfx/enemy-death-6-sfx.mp3"></audio>
-    <audio id="enemy-death-7-sfx" src="assets/audio/sfx/enemy-death-7-sfx.mp3"></audio>
-    <audio id="loss-health-sfx" src="assets/audio/sfx/loss-health-sfx.mp3"></audio>
+    <audio
+      id="enemy-death-1-sfx"
+      src="assets/audio/sfx/enemy-death-1-sfx.mp3"
+    ></audio>
+    <audio
+      id="enemy-death-2-sfx"
+      src="assets/audio/sfx/enemy-death-2-sfx.mp3"
+    ></audio>
+    <audio
+      id="enemy-death-3-sfx"
+      src="assets/audio/sfx/enemy-death-3-sfx.mp3"
+    ></audio>
+    <audio
+      id="enemy-death-4-sfx"
+      src="assets/audio/sfx/enemy-death-4-sfx.mp3"
+    ></audio>
+    <audio
+      id="enemy-death-5-sfx"
+      src="assets/audio/sfx/enemy-death-5-sfx.mp3"
+    ></audio>
+    <audio
+      id="enemy-death-6-sfx"
+      src="assets/audio/sfx/enemy-death-6-sfx.mp3"
+    ></audio>
+    <audio
+      id="enemy-death-7-sfx"
+      src="assets/audio/sfx/enemy-death-7-sfx.mp3"
+    ></audio>
+    <audio
+      id="loss-health-sfx"
+      src="assets/audio/sfx/loss-health-sfx.mp3"
+    ></audio>
     <audio id="special-sfx" src="assets/audio/sfx/special-sfx.mp3"></audio>
     <audio id="shroud-music" src="assets/audio/sfx/shroud-music.mp3"></audio>
-    <div id="display" >
-    <div class="score" id="final-score">0</div>
-    <div id="game" >
-      <div class="score" id="light-score"> 0 </div>
-      <div class="health-bar" id="empty-health-bar"></div>
-      <div class="health-bar" id="filled-health-bar"></div>
-      <canvas width="948" height="533">
-        The game.
-        <!-- An alternative text describing what your canvas displays. -->
-      </canvas>
+    <div id="display">
+      <div class="score" id="final-score">0</div>
+      <div id="game">
+        <div class="score" id="light-score">0</div>
+        <div class="health-bar" id="empty-health-bar"></div>
+        <div class="health-bar" id="filled-health-bar"></div>
+        <canvas width="948" height="533">
+          The game.
+          <!-- An alternative text describing what your canvas displays. -->
+        </canvas>
+      </div>
+      <div class="menu" id="start-menu">
+        <img src="assets/images/interface/title-screen.png" alt="" />
+      </div>
+      <div class="menu" id="pause-menu">
+        <img src="assets/images/interface/pause-screen.png" alt="" />
+      </div>
+      <div class="menu" id="death-menu">
+        <img src="assets/images/interface/death-screen.png" alt="" />
+      </div>
     </div>
-    <div class="menu" id="start-menu" >
-    <img src="assets/images/interface/title-screen.png" alt="">
-    </div>
-    <div class="menu" id="pause-menu" >
-    <img src="assets/images/interface/pause-screen.png" alt="">
-    </div>
-    <div class="menu" id="death-menu" >
-    <img src="assets/images/interface/death-screen.png" alt="">
-    </div>
-  </div>
   </body>
 </html>
